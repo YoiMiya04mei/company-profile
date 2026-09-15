@@ -1,4 +1,4 @@
-import { ArrowRight, Phone, ShieldCheck, Activity, Headphones } from 'lucide-react';
+import { ArrowRight, LayoutGrid, ShieldCheck, Activity, Headphones } from 'lucide-react';
 import { company } from '@/data/company';
 
 export default function Hero() {
@@ -116,13 +116,15 @@ export default function Hero() {
                 Jelajahi Layanan
                 <ArrowRight className="w-5 h-5" />
               </button>
-              <button
-                onClick={() => scrollTo('#contact')}
+              <a
+                href={company.portals.billing.url}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="flex items-center justify-center gap-2 bg-white/5 border border-white/15 text-white px-7 py-3.5 rounded-xl font-semibold hover:bg-white/10 hover:border-cyan-500/40 transition-all"
               >
-                <Phone className="w-5 h-5" />
-                Hubungi Kami
-              </button>
+                <LayoutGrid className="w-5 h-5" />
+                Portal Login
+              </a>
             </div>
 
             {/* Floating info cards */}

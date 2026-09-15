@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
-import { Menu, X, Radio, Phone } from 'lucide-react';
+import { Menu, X, Radio } from 'lucide-react';
 import { navLinks, company } from '@/data/company';
+import PortalLogin from '@/components/PortalLogin';
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -56,15 +57,9 @@ export default function Navbar() {
           ))}
         </div>
 
-        {/* CTA */}
+        {/* Portal Login dropdown */}
         <div className="hidden lg:flex">
-          <button
-            onClick={() => handleNavClick('#contact')}
-            className="flex items-center gap-2 bg-gradient-to-r from-cyan-500 to-blue-600 text-white px-5 py-2.5 rounded-lg font-semibold text-sm hover:shadow-lg hover:shadow-cyan-500/30 transition-all btn-shine"
-          >
-            <Phone className="w-4 h-4" />
-            Hubungi Kami
-          </button>
+          <PortalLogin />
         </div>
 
         {/* Mobile toggle */}
@@ -80,7 +75,7 @@ export default function Navbar() {
       {/* Mobile menu */}
       <div
         className={`lg:hidden overflow-hidden transition-all duration-300 ${
-          mobileOpen ? 'max-h-96 mt-4' : 'max-h-0'
+          mobileOpen ? 'max-h-[28rem] mt-4' : 'max-h-0'
         }`}
       >
         <div className="bg-navy-900/95 backdrop-blur-md mx-4 rounded-xl p-4 flex flex-col gap-1 border border-navy-700/50">
@@ -93,11 +88,44 @@ export default function Navbar() {
               {link.label}
             </button>
           ))}
+
+          {/* Mobile portal login links */}
+          <div className="pt-3 mt-2 border-t border-navy-700/50 space-y-2">
+            <p className="text-gray-500 text-xs font-medium uppercase tracking-wide px-4">Customer Portal</p>
+            <a
+              href={company.portals.dcim.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-3 px-4 py-3 bg-navy-800/50 rounded-lg hover:bg-navy-800 transition-colors"
+            >
+              <div className="w-9 h-9 bg-cyan-500/15 rounded-lg flex items-center justify-center">
+                <span className="text-cyan-400 text-sm font-bold">DCIM</span>
+              </div>
+              <div>
+                <div className="text-white text-sm font-semibold">{company.portals.dcim.label}</div>
+                <div className="text-gray-500 text-xs">{company.portals.dcim.description}</div>
+              </div>
+            </a>
+            <a
+              href={company.portals.billing.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-3 px-4 py-3 bg-navy-800/50 rounded-lg hover:bg-navy-800 transition-colors"
+            >
+              <div className="w-9 h-9 bg-cyan-500/15 rounded-lg flex items-center justify-center">
+                <span className="text-cyan-400 text-sm font-bold">BILL</span>
+              </div>
+              <div>
+                <div className="text-white text-sm font-semibold">{company.portals.billing.label}</div>
+                <div className="text-gray-500 text-xs">{company.portals.billing.description}</div>
+              </div>
+            </a>
+          </div>
+
           <button
             onClick={() => handleNavClick('#contact')}
-            className="flex items-center justify-center gap-2 bg-gradient-to-r from-cyan-500 to-blue-600 text-white px-5 py-3 rounded-lg font-semibold text-sm mt-2"
+            className="flex items-center justify-center gap-2 bg-white/5 border border-white/15 text-white px-5 py-3 rounded-lg font-semibold text-sm mt-2 hover:bg-white/10 transition-colors"
           >
-            <Phone className="w-4 h-4" />
             Hubungi Kami
           </button>
         </div>

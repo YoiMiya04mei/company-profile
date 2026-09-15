@@ -1,4 +1,4 @@
-import { Radio, Instagram, Facebook, Linkedin, MapPin } from 'lucide-react';
+import { Radio, Instagram, Facebook, Linkedin, MapPin, Server, CreditCard } from 'lucide-react';
 import { company } from '@/data/company';
 
 const footerServices = [
@@ -110,6 +110,28 @@ export default function Footer() {
           <div>
             <h3 className="text-white font-semibold text-sm mb-4">Support</h3>
             <ul className="space-y-2.5">
+              <li>
+                <a
+                  href={company.portals.dcim.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 text-gray-500 hover:text-cyan-400 text-sm transition-colors"
+                >
+                  <Server className="w-3.5 h-3.5" />
+                  DCIM Portal
+                </a>
+              </li>
+              <li>
+                <a
+                  href={company.portals.billing.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 text-gray-500 hover:text-cyan-400 text-sm transition-colors"
+                >
+                  <CreditCard className="w-3.5 h-3.5" />
+                  Billing System
+                </a>
+              </li>
               <li>
                 <a
                   href={`https://wa.me/${company.contact.whatsapp}`}

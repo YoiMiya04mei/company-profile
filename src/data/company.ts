@@ -40,6 +40,21 @@ export const company = {
     'Data Center',
     'Pelanggan Rumah/Bisnis',
   ],
+
+  // Customer Portal URLs — PLACEHOLDERS (replace with real portal URLs)
+  // TODO: When portals are ready, update these URLs.
+  portals: {
+    dcim: {
+      label: 'DCIM Portal',
+      description: 'Monitor & manage your infrastructure',
+      url: 'https://dcim.jembatandata.com',
+    },
+    billing: {
+      label: 'Billing System',
+      description: 'View invoices & manage payments',
+      url: 'https://billing.jembatandata.com',
+    },
+  },
 };
 
 export const stats = [

@@ -13,6 +13,7 @@ const footerCompany = [
   { label: 'About', href: '#about' },
   { label: 'Network', href: '#network' },
   { label: 'Coverage', href: '#coverage' },
+  { label: 'Partnership', href: '#partnership' },
   { label: 'Contact', href: '#contact' },
 ];
 

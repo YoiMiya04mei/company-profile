@@ -220,6 +220,55 @@ export const networkFeatures = [
   'Enterprise-grade infrastructure',
 ];
 
+export const partnership = {
+  eyebrow: 'PARTNERSHIP PROGRAM',
+  title: 'Grow Together with Jembatan Data',
+  description:
+    'Kami membuka peluang kolaborasi dengan ISP, reseller, technology partner, dan pemilik infrastruktur untuk menghadirkan konektivitas yang lebih luas dan layanan yang lebih baik bagi pelanggan Indonesia.',
+  benefits: [
+    {
+      icon: 'Handshake',
+      title: 'Partner Pricing',
+      description: 'Skema harga khusus dan fleksibel sesuai model bisnis partner.',
+    },
+    {
+      icon: 'TrendingUp',
+      title: 'Business Growth',
+      description: 'Kembangkan portofolio layanan dengan dukungan konektivitas kami.',
+    },
+    {
+      icon: 'Headphones',
+      title: 'Technical Support',
+      description: 'Dukungan teknis dan koordinasi NOC untuk menjaga kualitas layanan.',
+    },
+    {
+      icon: 'Share2',
+      title: 'Long-term Collaboration',
+      description: 'Bangun kerja sama berkelanjutan dengan proses yang transparan.',
+    },
+  ],
+  programs: [
+    {
+      icon: 'Router',
+      title: 'ISP & Reseller Partner',
+      description: 'Program wholesale bandwidth untuk ISP lokal, reseller, dan network operator.',
+      tags: ['Wholesale Bandwidth', 'IP Transit', 'BGP Support'],
+    },
+    {
+      icon: 'Cable',
+      title: 'Infrastructure Partner',
+      description: 'Kolaborasi last-mile, fiber, data center, dan infrastruktur jaringan.',
+      tags: ['Last-mile Access', 'Fiber Collaboration', 'Colocation'],
+    },
+    {
+      icon: 'Workflow',
+      title: 'Technology Partner',
+      description: 'Sinergi solusi teknologi untuk membantu pelanggan mempercepat transformasi digital.',
+      tags: ['Joint Solution', 'Integration', 'Managed Services'],
+    },
+  ],
+};
+
 export const monitoringData = {
   status: 'ONLINE',
   metrics: [
@@ -398,6 +447,7 @@ export const navLinks = [
   { label: 'NETWORK', href: '#network' },
   { label: 'COVERAGE', href: '#coverage' },
   { label: 'PRICING', href: '#pricing' },
+  { label: 'PARTNERSHIP', href: '#partnership' },
   { label: 'CONTACT', href: '#contact' },
 ];
 

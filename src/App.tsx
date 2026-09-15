@@ -10,6 +10,7 @@ import Coverage from '@/components/Coverage';
 import Pricing from '@/components/Pricing';
 import WhyChooseUs from '@/components/WhyChooseUs';
 import CustomerSegments from '@/components/CustomerSegments';
+import Partnership from '@/components/Partnership';
 import SLA from '@/components/SLA';
 import Testimonials from '@/components/Testimonials';
 import FAQ from '@/components/FAQ';
@@ -33,6 +34,7 @@ function App() {
         <Pricing />
         <WhyChooseUs />
         <CustomerSegments />
+        <Partnership />
         <SLA />
         <Testimonials />
         <FAQ />

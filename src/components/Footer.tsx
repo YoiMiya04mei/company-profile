@@ -1,5 +1,6 @@
-import { Radio, Instagram, Facebook, Linkedin, MapPin, Server, CreditCard } from 'lucide-react';
+import { Instagram, Facebook, Linkedin, MapPin, Server, CreditCard } from 'lucide-react';
 import { company } from '@/data/company';
+import { useTheme } from '@/context/ThemeContext';
 
 const footerServices = [
   'Dedicated Internet',
@@ -14,7 +15,7 @@ const footerCompany = [
   { label: 'Network', href: '#network' },
   { label: 'Coverage', href: '#coverage' },
   { label: 'Partnership', href: '#partnership' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'Contact', href: '#footer' },
 ];
 
 const handleNav = (href: string) => {
@@ -22,32 +23,37 @@ const handleNav = (href: string) => {
 };
 
 export default function Footer() {
+  const { resolvedTheme } = useTheme();
+  const logoSrc = resolvedTheme === 'dark' ? '/logo-jdp-dark.png' : '/logo-jdp.png';
+
   return (
-    <footer className="relative bg-navy-950 border-t border-navy-800 pt-16 pb-8">
+    <footer id="footer" className="relative bg-slate-100 dark:bg-navy-950 border-t border-slate-200 dark:border-navy-800 pt-16 pb-8 transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 mb-12">
           {/* Brand */}
           <div className="col-span-2 lg:col-span-1">
-            <div className="flex items-center gap-2.5 mb-4">
-              <Radio className="w-7 h-7 text-cyan-400" />
-              <span className="text-white font-bold text-lg tracking-wide">
-                JEMBATAN <span className="text-cyan-400">DATA</span>
-              </span>
-            </div>
-            <p className="text-gray-500 text-sm leading-relaxed mb-4">
+            <img
+              src={logoSrc}
+              alt="PT. Jembatan Data Pangrango"
+              className="h-10 w-auto object-contain mb-4"
+            />
+            <p className="text-slate-900 dark:text-white font-bold text-base mb-1">
+              PT. Jembatan Data Pangrango
+            </p>
+            <p className="text-slate-600 dark:text-gray-400 text-sm leading-relaxed mb-3">
               Internet Service Provider & Network Infrastructure.
             </p>
-            <p className="text-gray-600 text-xs leading-relaxed">
+            <p className="text-slate-500 dark:text-gray-500 text-xs leading-relaxed">
               {company.tagline}
             </p>
 
             {/* Social */}
-            <div className="flex gap-3 mt-6">
+            <div className="flex gap-3 mt-5">
               <a
                 href={company.social.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-9 h-9 bg-navy-800 border border-navy-700 rounded-lg flex items-center justify-center text-gray-400 hover:text-cyan-400 hover:border-cyan-500/30 transition-colors"
+                className="w-9 h-9 bg-white dark:bg-navy-800 border border-slate-200 dark:border-navy-700 rounded-lg flex items-center justify-center text-slate-500 dark:text-gray-400 hover:text-cyan-600 dark:hover:text-cyan-400 hover:border-cyan-500/30 shadow-sm transition-colors"
                 aria-label="Instagram"
               >
                 <Instagram className="w-4 h-4" />
@@ -56,7 +62,7 @@ export default function Footer() {
                 href={company.social.facebook}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-9 h-9 bg-navy-800 border border-navy-700 rounded-lg flex items-center justify-center text-gray-400 hover:text-cyan-400 hover:border-cyan-500/30 transition-colors"
+                className="w-9 h-9 bg-white dark:bg-navy-800 border border-slate-200 dark:border-navy-700 rounded-lg flex items-center justify-center text-slate-500 dark:text-gray-400 hover:text-cyan-600 dark:hover:text-cyan-400 hover:border-cyan-500/30 shadow-sm transition-colors"
                 aria-label="Facebook"
               >
                 <Facebook className="w-4 h-4" />
@@ -65,7 +71,7 @@ export default function Footer() {
                 href={company.social.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-9 h-9 bg-navy-800 border border-navy-700 rounded-lg flex items-center justify-center text-gray-400 hover:text-cyan-400 hover:border-cyan-500/30 transition-colors"
+                className="w-9 h-9 bg-white dark:bg-navy-800 border border-slate-200 dark:border-navy-700 rounded-lg flex items-center justify-center text-slate-500 dark:text-gray-400 hover:text-cyan-600 dark:hover:text-cyan-400 hover:border-cyan-500/30 shadow-sm transition-colors"
                 aria-label="LinkedIn"
               >
                 <Linkedin className="w-4 h-4" />
@@ -75,13 +81,13 @@ export default function Footer() {
 
           {/* Services */}
           <div>
-            <h3 className="text-white font-semibold text-sm mb-4">Services</h3>
+            <h3 className="text-slate-900 dark:text-white font-semibold text-sm mb-4">Services</h3>
             <ul className="space-y-2.5">
               {footerServices.map((s, i) => (
                 <li key={i}>
                   <button
                     onClick={() => handleNav('#services')}
-                    className="text-gray-500 hover:text-cyan-400 text-sm transition-colors text-left"
+                    className="text-slate-600 dark:text-gray-400 hover:text-cyan-600 dark:hover:text-cyan-400 text-sm transition-colors text-left"
                   >
                     {s}
                   </button>
@@ -92,13 +98,13 @@ export default function Footer() {
 
           {/* Company */}
           <div>
-            <h3 className="text-white font-semibold text-sm mb-4">Company</h3>
+            <h3 className="text-slate-900 dark:text-white font-semibold text-sm mb-4">Company</h3>
             <ul className="space-y-2.5">
               {footerCompany.map((item, i) => (
                 <li key={i}>
                   <button
                     onClick={() => handleNav(item.href)}
-                    className="text-gray-500 hover:text-cyan-400 text-sm transition-colors text-left"
+                    className="text-slate-600 dark:text-gray-400 hover:text-cyan-600 dark:hover:text-cyan-400 text-sm transition-colors text-left"
                   >
                     {item.label}
                   </button>
@@ -109,16 +115,16 @@ export default function Footer() {
 
           {/* Support / Contact */}
           <div>
-            <h3 className="text-white font-semibold text-sm mb-4">Support</h3>
+            <h3 className="text-slate-900 dark:text-white font-semibold text-sm mb-4">Support</h3>
             <ul className="space-y-2.5">
               <li>
                 <a
                   href={company.portals.dcim.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-gray-500 hover:text-cyan-400 text-sm transition-colors"
+                  className="flex items-center gap-2 text-slate-600 dark:text-gray-400 hover:text-cyan-600 dark:hover:text-cyan-400 text-sm transition-colors"
                 >
-                  <Server className="w-3.5 h-3.5" />
+                  <Server className="w-3.5 h-3.5 text-cyan-500" />
                   DCIM Portal
                 </a>
               </li>
@@ -127,9 +133,9 @@ export default function Footer() {
                   href={company.portals.billing.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-gray-500 hover:text-cyan-400 text-sm transition-colors"
+                  className="flex items-center gap-2 text-slate-600 dark:text-gray-400 hover:text-cyan-600 dark:hover:text-cyan-400 text-sm transition-colors"
                 >
-                  <CreditCard className="w-3.5 h-3.5" />
+                  <CreditCard className="w-3.5 h-3.5 text-cyan-500" />
                   Billing System
                 </a>
               </li>
@@ -138,7 +144,7 @@ export default function Footer() {
                   href={`https://wa.me/${company.contact.whatsapp}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-gray-500 hover:text-cyan-400 text-sm transition-colors"
+                  className="text-slate-600 dark:text-gray-400 hover:text-cyan-600 dark:hover:text-cyan-400 text-sm transition-colors"
                 >
                   WhatsApp
                 </a>
@@ -146,23 +152,23 @@ export default function Footer() {
               <li>
                 <a
                   href={`mailto:${company.contact.email}`}
-                  className="text-gray-500 hover:text-cyan-400 text-sm transition-colors"
+                  className="text-slate-600 dark:text-gray-400 hover:text-cyan-600 dark:hover:text-cyan-400 text-sm transition-colors"
                 >
                   Email
                 </a>
               </li>
               <li>
                 <button
-                  onClick={() => handleNav('#contact')}
-                  className="text-gray-500 hover:text-cyan-400 text-sm transition-colors text-left"
+                  onClick={() => handleNav('#footer')}
+                  className="text-slate-600 dark:text-gray-400 hover:text-cyan-600 dark:hover:text-cyan-400 text-sm transition-colors text-left"
                 >
                   Technical Support
                 </button>
               </li>
               <li className="pt-2">
                 <div className="flex items-start gap-2">
-                  <MapPin className="w-4 h-4 text-gray-600 flex-shrink-0 mt-0.5" />
-                  <span className="text-gray-600 text-xs leading-relaxed">
+                  <MapPin className="w-4 h-4 text-cyan-500 flex-shrink-0 mt-0.5" />
+                  <span className="text-slate-500 dark:text-gray-500 text-xs leading-relaxed">
                     {company.contact.address}
                   </span>
                 </div>
@@ -172,13 +178,13 @@ export default function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="border-t border-navy-800 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-gray-600 text-xs text-center sm:text-left">
-            © 2026 Jembatan Data. All Rights Reserved.
+        <div className="border-t border-slate-200 dark:border-navy-800 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p className="text-slate-500 dark:text-gray-500 text-xs text-center sm:text-left font-medium">
+            © 2026 PT. Jembatan Data Pangrango. All Rights Reserved.
           </p>
           <div className="flex gap-4">
-            <span className="text-gray-700 text-xs hover:text-gray-500 cursor-pointer transition-colors">Privacy Policy</span>
-            <span className="text-gray-700 text-xs hover:text-gray-500 cursor-pointer transition-colors">Terms of Service</span>
+            <span className="text-slate-500 dark:text-gray-500 text-xs hover:text-cyan-600 dark:hover:text-gray-400 cursor-pointer transition-colors">Kebijakan Privasi</span>
+            <span className="text-slate-500 dark:text-gray-500 text-xs hover:text-cyan-600 dark:hover:text-gray-400 cursor-pointer transition-colors">Syarat & Ketentuan</span>
           </div>
         </div>
       </div>

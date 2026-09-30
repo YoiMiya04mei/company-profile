@@ -49,7 +49,7 @@ export default function FeaturedService() {
               </div>
 
               <button
-                onClick={() => document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' })}
+                onClick={() => document.querySelector('#footer')?.scrollIntoView({ behavior: 'smooth' })}
                 className="flex items-center gap-2 bg-gradient-to-r from-cyan-500 to-blue-600 text-white px-7 py-3.5 rounded-xl font-semibold hover:shadow-lg hover:shadow-cyan-500/30 transition-all btn-shine"
               >
                 {featuredService.cta}

@@ -107,7 +107,7 @@ export default function Services() {
             <button
               onClick={() => {
                 setSelected(null);
-                document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' });
+                document.querySelector('#footer')?.scrollIntoView({ behavior: 'smooth' });
               }}
               className="w-full mt-8 bg-gradient-to-r from-cyan-500 to-blue-600 text-white py-3.5 rounded-xl font-semibold hover:shadow-lg hover:shadow-cyan-500/30 transition-all btn-shine"
             >

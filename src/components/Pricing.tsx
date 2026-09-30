@@ -6,7 +6,7 @@ export default function Pricing() {
   const { ref, visible } = useReveal<HTMLDivElement>();
 
   const scrollToContact = () => {
-    document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' });
+    document.querySelector('#footer')?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (

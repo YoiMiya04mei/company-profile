@@ -240,3 +240,460 @@ html {
     transform: none;
   }
 }
+
+/* ==========================================================
+   THEME STYLES (LIGHT & DARK MODE)
+   ========================================================== */
+
+/* Smooth theme transition on root */
+html {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Light mode root */
+html:not(.dark) {
+  color-scheme: light;
+}
+
+html:not(.dark) body {
+  background-color: #f8fafc;
+  color: #0f172a;
+}
+
+/* ---- LIGHT MODE: Section backgrounds ---- */
+html:not(.dark) section.bg-navy-950,
+html:not(.dark) div.bg-navy-950,
+html:not(.dark) .min-h-screen.bg-navy-950 {
+  background-color: #f8fafc !important;
+}
+
+html:not(.dark) .bg-navy-900\/50,
+html:not(.dark) .bg-navy-900\/95,
+html:not(.dark) .bg-navy-900 {
+  background-color: #f1f5f9 !important;
+}
+
+html:not(.dark) .bg-navy-800\/50,
+html:not(.dark) .bg-navy-800\/60,
+html:not(.dark) .bg-navy-800 {
+  background-color: #ffffff !important;
+}
+
+/* ---- LIGHT MODE: Typography — TARGETED overrides ---- */
+/* Hero headings: make them dark navy for high contrast */
+html:not(.dark) h1.text-white,
+html:not(.dark) h2.text-white,
+html:not(.dark) h3.text-white {
+  color: #0f172a !important;
+}
+
+/* Spans and divs with text-white that are NOT inside gradient backgrounds */
+html:not(.dark) span.text-white,
+html:not(.dark) div.text-white,
+html:not(.dark) p.text-white {
+  color: #0f172a !important;
+}
+
+/* But NOT text inside gradient buttons or gradient backgrounds — keep white */
+html:not(.dark) .bg-gradient-to-r .text-white,
+html:not(.dark) .bg-gradient-to-br .text-white,
+html:not(.dark) .bg-gradient-to-r span,
+html:not(.dark) .bg-gradient-to-r div,
+html:not(.dark) .bg-gradient-to-br span,
+html:not(.dark) .bg-gradient-to-br div,
+html:not(.dark) button.bg-gradient-to-r,
+html:not(.dark) a.bg-gradient-to-r,
+html:not(.dark) .from-cyan-500 *,
+html:not(.dark) .glow-blue *,
+html:not(.dark) [class*="bg-gradient"] .text-white {
+  color: #ffffff !important;
+}
+
+/* Gray text: ensure readable contrast on light backgrounds */
+html:not(.dark) .text-gray-300 {
+  color: #334155 !important;
+}
+
+html:not(.dark) .text-gray-400 {
+  color: #475569 !important;
+}
+
+html:not(.dark) .text-gray-500 {
+  color: #64748b !important;
+}
+
+html:not(.dark) .text-gray-600 {
+  color: #475569 !important;
+}
+
+/* Cyan accents: darken slightly for light mode readability */
+html:not(.dark) .text-cyan-300 {
+  color: #0891b2 !important;
+}
+
+html:not(.dark) .text-cyan-400 {
+  color: #0891b2 !important;
+}
+
+/* Keep gradient-text as-is — it uses background-clip and looks great */
+
+/* ---- LIGHT MODE: Cards & borders ---- */
+html:not(.dark) .bg-white\/5 {
+  background-color: #ffffff !important;
+  border-color: #e2e8f0 !important;
+  box-shadow: 0 1px 8px -2px rgba(15, 23, 42, 0.08);
+}
+
+html:not(.dark) .bg-white\/10 {
+  background-color: rgba(255, 255, 255, 0.85) !important;
+}
+
+html:not(.dark) .border-white\/10,
+html:not(.dark) .border-white\/15 {
+  border-color: #e2e8f0 !important;
+}
+
+html:not(.dark) .border-navy-700 {
+  border-color: #e2e8f0 !important;
+}
+
+html:not(.dark) .border-navy-800 {
+  border-color: #e2e8f0 !important;
+}
+
+html:not(.dark) .border-navy-700\/50 {
+  border-color: #e2e8f0 !important;
+}
+
+/* ---- LIGHT MODE: Network nodes ---- */
+html:not(.dark) .bg-navy-800.border-cyan-500\/30 {
+  background-color: #ffffff !important;
+  border-color: #0ea5e9 !important;
+  box-shadow: 0 2px 8px -2px rgba(14, 165, 233, 0.15);
+}
+
+/* ---- LIGHT MODE: Hero section badges & tags ---- */
+html:not(.dark) .bg-cyan-500\/10 {
+  background-color: rgba(14, 165, 233, 0.08) !important;
+}
+
+html:not(.dark) .border-cyan-500\/30 {
+  border-color: rgba(14, 165, 233, 0.3) !important;
+}
+
+/* ---- LIGHT MODE: Portal Login button text stays white ---- */
+html:not(.dark) .btn-shine {
+  color: #ffffff !important;
+}
+
+/* ---- LIGHT MODE: Forms ---- */
+html:not(.dark) input,
+html:not(.dark) textarea,
+html:not(.dark) select {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+  border-color: #cbd5e1 !important;
+}
+
+html:not(.dark) input::placeholder,
+html:not(.dark) textarea::placeholder {
+  color: #94a3b8 !important;
+}
+
+/* ---- LIGHT MODE: Scrollbar ---- */
+html:not(.dark) ::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+html:not(.dark) ::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+}
+html:not(.dark) ::-webkit-scrollbar-thumb:hover {
+  background: #0284c7;
+}
+
+/* ---- LIGHT MODE: Grid pattern (subtler) ---- */
+html:not(.dark) .grid-pattern {
+  background-image:
+    linear-gradient(rgba(14, 165, 233, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(14, 165, 233, 0.06) 1px, transparent 1px);
+}
+
+/* ---- LIGHT MODE: Gradient orbs (reduce intensity) ---- */
+html:not(.dark) .bg-blue-600\/20 {
+  background-color: rgba(37, 99, 235, 0.06) !important;
+}
+
+html:not(.dark) .bg-cyan-500\/15 {
+  background-color: rgba(6, 182, 212, 0.06) !important;
+}
+
+/* ---- LIGHT MODE: Scroll indicator ---- */
+html:not(.dark) .border-gray-600 {
+  border-color: #94a3b8 !important;
+}
+
+/* ---- LIGHT MODE: Yellow disclaimer/warning text ---- */
+html:not(.dark) .text-yellow-400\/70,
+html:not(.dark) .text-yellow-400\/80 {
+  color: #b45309 !important;
+}
+
+html:not(.dark) .text-yellow-400 {
+  color: #d97706 !important;
+}
+
+html:not(.dark) .bg-yellow-500\/5 {
+  background-color: rgba(245, 158, 11, 0.08) !important;
+}
+
+html:not(.dark) .bg-yellow-500\/10 {
+  background-color: rgba(245, 158, 11, 0.1) !important;
+}
+
+html:not(.dark) .border-yellow-500\/15,
+html:not(.dark) .border-yellow-500\/20 {
+  border-color: rgba(217, 119, 6, 0.3) !important;
+}
+
+/* ---- LIGHT MODE: Navy-800/50 cards (Services, WhyChooseUs, Coverage items, FAQ, Partnership, CustomerSegments, Monitoring) ---- */
+html:not(.dark) .bg-navy-800\/50 {
+  background-color: #ffffff !important;
+  border-color: #e2e8f0 !important;
+  box-shadow: 0 1px 6px -1px rgba(15, 23, 42, 0.08);
+}
+
+/* ---- LIGHT MODE: Navy-800/40 (Coverage map container) ---- */
+html:not(.dark) .bg-navy-800\/40 {
+  background-color: #e2e8f0 !important;
+  border-color: #cbd5e1 !important;
+}
+
+/* ---- LIGHT MODE: Navy-800/60 (Monitoring dashboard, Partnership program cards) ---- */
+html:not(.dark) .bg-navy-800\/60 {
+  background-color: #ffffff !important;
+  border-color: #e2e8f0 !important;
+  box-shadow: 0 1px 8px -2px rgba(15, 23, 42, 0.08);
+}
+
+/* ---- LIGHT MODE: Navy-900/50 (Monitoring chart bg, metric cards) ---- */
+html:not(.dark) .bg-navy-900\/50 {
+  background-color: #f1f5f9 !important;
+}
+
+/* ---- LIGHT MODE: Gradient card backgrounds (SLA, Partnership programs, FeaturedService) ---- */
+html:not(.dark) .bg-gradient-to-br.from-navy-800\/80,
+html:not(.dark) .from-navy-800\/80 {
+  background: #ffffff !important;
+  border-color: #e2e8f0 !important;
+  box-shadow: 0 1px 8px -2px rgba(15, 23, 42, 0.08);
+}
+
+html:not(.dark) .bg-gradient-to-br.from-navy-800\/60,
+html:not(.dark) .from-navy-800\/60 {
+  background: #ffffff !important;
+  border-color: #e2e8f0 !important;
+  box-shadow: 0 1px 8px -2px rgba(15, 23, 42, 0.08);
+}
+
+/* ---- LIGHT MODE: Green status indicators ---- */
+html:not(.dark) .bg-green-500\/5 {
+  background-color: rgba(34, 197, 94, 0.08) !important;
+}
+
+html:not(.dark) .border-green-500\/20 {
+  border-color: rgba(34, 197, 94, 0.25) !important;
+}
+
+/* ---- LIGHT MODE: Pricing highlighted card gradient background ---- */
+html:not(.dark) .bg-gradient-to-br.from-cyan-500\/10 {
+  background: linear-gradient(135deg, rgba(14, 165, 233, 0.08), rgba(37, 99, 235, 0.08)) !important;
+  border-color: #0ea5e9 !important;
+}
+
+/* ---- LIGHT MODE: Hero portal login button ---- */
+html:not(.dark) a.bg-white\/5,
+html:not(.dark) button.bg-white\/5 {
+  background-color: #ffffff !important;
+  border-color: #cbd5e1 !important;
+  color: #0f172a !important;
+  box-shadow: 0 1px 4px -1px rgba(15, 23, 42, 0.1);
+}
+
+html:not(.dark) a.bg-white\/5:hover,
+html:not(.dark) button.bg-white\/5:hover {
+  background-color: #f1f5f9 !important;
+}
+
+/* ---- LIGHT MODE: Pricing non-highlighted button ---- */
+html:not(.dark) .bg-white\/5.border.border-white\/15 {
+  background-color: #ffffff !important;
+  border-color: #cbd5e1 !important;
+  color: #0f172a !important;
+  box-shadow: 0 1px 4px -1px rgba(15, 23, 42, 0.1);
+}
+
+/* ---- LIGHT MODE: text-gray-500 in cards (should be darker) ---- */
+html:not(.dark) .text-gray-500 {
+  color: #475569 !important;
+}
+
+/* ---- LIGHT MODE: text-gray-600 (Monitoring time labels etc.) ---- */
+html:not(.dark) .text-gray-600 {
+  color: #475569 !important;
+}
+
+/* ---- LIGHT MODE: border-cyan-500/15 (SLA, Partnership program card borders) ---- */
+html:not(.dark) .border-cyan-500\/15 {
+  border-color: #e2e8f0 !important;
+}
+
+html:not(.dark) .border-cyan-500\/20 {
+  border-color: rgba(14, 165, 233, 0.25) !important;
+}
+
+/* ---- LIGHT MODE: Dashboard border-navy-700 ---- */
+html:not(.dark) .border-navy-700 {
+  border-color: #e2e8f0 !important;
+}
+
+/* ---- LIGHT MODE: Cyan tags in Partnership (text-cyan-300 on light bg) ---- */
+html:not(.dark) .text-cyan-300 {
+  color: #0891b2 !important;
+}
+
+/* ---- LIGHT MODE: Map SVG fill adjustment ---- */
+html:not(.dark) svg path[fill="url(#mapGrad)"] {
+  fill: #94a3b8 !important;
+  stroke: #64748b !important;
+}
+
+/* ---- LIGHT MODE: Monitoring chart grid lines ---- */
+html:not(.dark) svg line[stroke="#1a3a5c"] {
+  stroke: #cbd5e1 !important;
+}
+
+/* ---- LIGHT MODE: bg-navy-800 standalone (FeaturedService server stack, Coverage modal) ---- */
+html:not(.dark) .bg-navy-800 {
+  background-color: #ffffff !important;
+}
+
+/* ---- LIGHT MODE: bg-navy-900 (form inputs) ---- */
+html:not(.dark) .bg-navy-900 {
+  background-color: #f1f5f9 !important;
+}
+
+/* ---- LIGHT MODE: Hero info cards — ensure floating cards look proper ---- */
+html:not(.dark) .bg-white\/5.backdrop-blur-sm {
+  background-color: #ffffff !important;
+  border-color: #e2e8f0 !important;
+  box-shadow: 0 2px 8px -2px rgba(15, 23, 42, 0.1);
+}
+
+/* ---- LIGHT MODE: Glow effects (tone down) ---- */
+html:not(.dark) .glow-blue {
+  box-shadow: 0 4px 20px rgba(14, 165, 233, 0.2);
+}
+
+html:not(.dark) .glow-cyan {
+  box-shadow: 0 4px 20px rgba(6, 182, 212, 0.15);
+}
+
+/* ---- LIGHT MODE: cyan-500/8 orb ---- */
+html:not(.dark) .bg-cyan-500\/8 {
+  background-color: rgba(6, 182, 212, 0.04) !important;
+}
+
+/* ---- LIGHT MODE: blue-600/10, cyan-500/10 orbs (FeaturedService) ---- */
+html:not(.dark) .bg-blue-600\/10 {
+  background-color: rgba(37, 99, 235, 0.04) !important;
+}
+
+html:not(.dark) .bg-cyan-500\/10 {
+  background-color: rgba(14, 165, 233, 0.06) !important;
+}
+
+/* ---- LIGHT MODE: Ensure btn-shine inside gradient buttons stays white ---- */
+html:not(.dark) .bg-gradient-to-r.from-cyan-500 .btn-shine,
+html:not(.dark) .bg-gradient-to-r.btn-shine {
+  color: #ffffff !important;
+}
+
+/* =============================================================
+   LEAFLET CUSTOM DARK THEME & TOOLTIP STYLING
+   ============================================================= */
+.leaflet-container {
+  background-color: #0a1628 !important;
+  font-family: var(--font-sans) !important;
+  outline: none;
+}
+
+/* Tooltip glassy dark card */
+.custom-leaflet-tooltip.leaflet-tooltip {
+  background: rgba(10, 22, 40, 0.92) !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+  border: 1px solid rgba(56, 189, 248, 0.4) !important;
+  border-radius: 0.75rem !important;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.6), 0 0 15px rgba(6, 182, 212, 0.2) !important;
+  padding: 8px 12px !important;
+  color: #ffffff !important;
+}
+
+.custom-leaflet-tooltip.leaflet-tooltip::before {
+  border-top-color: rgba(56, 189, 248, 0.4) !important;
+}
+
+/* Leaflet Attribution styling */
+.leaflet-control-attribution {
+  background: rgba(10, 22, 40, 0.75) !important;
+  backdrop-filter: blur(4px) !important;
+  color: #64748b !important;
+  font-size: 10px !important;
+  border-radius: 6px 0 0 0 !important;
+  padding: 2px 6px !important;
+}
+
+.leaflet-control-attribution a {
+  color: #38bdf8 !important;
+  text-decoration: none;
+}
+
+.leaflet-control-attribution a:hover {
+  text-decoration: underline;
+}
+
+/* Coverage polygon styling with smooth transition */
+.coverage-polygon {
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.coverage-polygon-jabodetabek {
+  filter: drop-shadow(0 0 10px rgba(0, 242, 254, 0.45));
+}
+.coverage-polygon-jabodetabek:hover {
+  filter: drop-shadow(0 0 16px rgba(0, 242, 254, 0.85));
+}
+
+.coverage-polygon-banten {
+  filter: drop-shadow(0 0 10px rgba(16, 185, 129, 0.45));
+}
+.coverage-polygon-banten:hover {
+  filter: drop-shadow(0 0 16px rgba(16, 185, 129, 0.85));
+}
+
+.coverage-polygon-jawa-barat {
+  filter: drop-shadow(0 0 10px rgba(99, 102, 241, 0.45));
+}
+.coverage-polygon-jawa-barat:hover {
+  filter: drop-shadow(0 0 16px rgba(99, 102, 241, 0.85));
+}
+
+.coverage-polygon-lombok-timur {
+  filter: drop-shadow(0 0 10px rgba(245, 158, 11, 0.45));
+}
+.coverage-polygon-lombok-timur:hover {
+  filter: drop-shadow(0 0 16px rgba(245, 158, 11, 0.85));
+}
+
+

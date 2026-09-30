@@ -10,7 +10,7 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex items-center bg-navy-950 overflow-hidden pt-20"
+      className="relative flex items-center bg-navy-950 overflow-hidden pt-32 lg:pt-40 pb-20 lg:pb-24"
     >
       {/* Background grid */}
       <div className="absolute inset-0 grid-pattern opacity-40" />
@@ -19,75 +19,7 @@ export default function Hero() {
       <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-600/20 rounded-full blur-3xl" />
       <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-cyan-500/15 rounded-full blur-3xl" />
 
-      {/* Animated network SVG */}
-      <svg
-        className="absolute inset-0 w-full h-full opacity-30"
-        viewBox="0 0 1200 800"
-        preserveAspectRatio="xMidYMid slice"
-        aria-hidden="true"
-      >
-        <defs>
-          <linearGradient id="lineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="#38bdf8" stopOpacity="0.2" />
-            <stop offset="50%" stopColor="#22d3ee" stopOpacity="0.6" />
-            <stop offset="100%" stopColor="#38bdf8" stopOpacity="0.2" />
-          </linearGradient>
-        </defs>
-        {/* Connection lines */}
-        {[
-          [100, 150], [300, 300], [200, 500], [500, 200],
-          [700, 400], [900, 250], [1050, 450], [800, 600],
-          [400, 650], [600, 550], [150, 350], [1100, 200],
-        ].map(([x, y], i) => {
-          const next = [[100, 150], [300, 300], [200, 500], [500, 200],
-            [700, 400], [900, 250], [1050, 450], [800, 600],
-            [400, 650], [600, 550], [150, 350], [1100, 200]][(i + 1) % 12];
-          return (
-            <line
-              key={i}
-              x1={x}
-              y1={y}
-              x2={next[0]}
-              y2={next[1]}
-              stroke="url(#lineGrad)"
-              strokeWidth="1"
-              strokeDasharray="4 4"
-              style={{ animation: `dashFlow ${2 + (i % 3)}s linear infinite` }}
-            />
-          );
-        })}
-        {/* Nodes */}
-        {[
-          [100, 150], [300, 300], [200, 500], [500, 200],
-          [700, 400], [900, 250], [1050, 450], [800, 600],
-          [400, 650], [600, 550], [150, 350], [1100, 200],
-        ].map(([x, y], i) => (
-          <g key={i}>
-            <circle cx={x} cy={y} r="6" fill="#38bdf8" opacity="0.6">
-              <animate
-                attributeName="r"
-                values="4;8;4"
-                dur={`${2 + (i % 3)}s`}
-                repeatCount="indefinite"
-              />
-            </circle>
-            <circle cx={x} cy={y} r="12" fill="none" stroke="#22d3ee" strokeWidth="0.5" opacity="0.3">
-              <animate
-                attributeName="r"
-                values="8;20;8"
-                dur={`${3 + (i % 2)}s`}
-                repeatCount="indefinite"
-              />
-              <animate
-                attributeName="opacity"
-                values="0.4;0;0.4"
-                dur={`${3 + (i % 2)}s`}
-                repeatCount="indefinite"
-              />
-            </circle>
-          </g>
-        ))}
-      </svg>
+
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -218,13 +150,7 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
-        <span className="text-gray-500 text-xs uppercase tracking-widest">Scroll</span>
-        <div className="w-6 h-10 border-2 border-gray-600 rounded-full flex justify-center pt-2">
-          <div className="w-1.5 h-1.5 bg-cyan-400 rounded-full animate-scroll-down" />
-        </div>
-      </div>
+
     </section>
   );
 }

@@ -5,18 +5,18 @@
 // =============================================================
 
 export const company = {
-  name: 'JEMBATAN DATA',
-  shortName: 'Jembatan Data',
+  name: 'PT. JEMBATAN DATA PANGRANGO',
+  shortName: 'PT. Jembatan Data Pangrango',
   tagline: 'Connecting Indonesia, Empowering Your Digital Future',
   type: 'Internet Service Provider (ISP)',
   description:
-    'Jembatan Data adalah perusahaan Internet Service Provider yang menyediakan layanan konektivitas internet, jaringan bisnis, dedicated internet, IP Transit, colocation, dan solusi jaringan untuk pelanggan enterprise, corporate, ISP/reseller, maupun institusi.',
+    'PT. Jembatan Data Pangrango adalah perusahaan Internet Service Provider yang menyediakan layanan konektivitas internet, jaringan bisnis, dedicated internet, IP Transit, colocation, dan solusi jaringan untuk pelanggan enterprise, corporate, ISP/reseller, maupun institusi.',
   website: 'jembatandata.com',
 
   // Contact — PLACEHOLDERS (replace with real data)
   contact: {
-    whatsapp: '6281234567890', // Placeholder — include country code, no +
-    whatsappDisplay: '+62 812-3456-7890',
+    whatsapp: '6289531825259', // Placeholder — include country code, no +
+    whatsappDisplay: '+62 895-3282-5259',
     email: 'info@jembatandata.com',
     address: 'Jl. Placeholder No. 123, Jakarta, Indonesia',
     operationalHours: '24/7 Customer Support • Mon–Fri 09:00–17:00 WIB (Sales)',
@@ -52,7 +52,7 @@ export const company = {
     billing: {
       label: 'Billing System',
       description: 'View invoices & manage payments',
-      url: 'https://billing.jembatandata.com',
+      url: 'https://billingjdp.jembatandata.com/reseller/login',
     },
   },
 };
@@ -281,16 +281,14 @@ export const monitoringData = {
   note: 'Illustration / Demo — Data di atas merupakan ilustrasi dan bukan data real-time.',
 };
 
+export { coverageRegions } from './coverageData';
 export const coverageCities = [
-  { name: 'Jakarta', x: 47, y: 62 },
-  { name: 'Bekasi', x: 50, y: 61 },
-  { name: 'Bandung', x: 45, y: 65 },
-  { name: 'Semarang', x: 54, y: 62 },
-  { name: 'Yogyakarta', x: 55, y: 65 },
-  { name: 'Surabaya', x: 62, y: 62 },
-  { name: 'Medan', x: 38, y: 30 },
-  { name: 'Makassar', x: 70, y: 72 },
+  { name: 'Jabodetabek' },
+  { name: 'Banten' },
+  { name: 'Jawa Barat' },
+  { name: 'Lombok Timur' },
 ];
+
 
 export const pricing = [
   {
@@ -442,13 +440,12 @@ export const faqs = [
 
 export const navLinks = [
   { label: 'HOME', href: '#home' },
-  { label: 'ABOUT', href: '#about' },
-  { label: 'SERVICES', href: '#services' },
   { label: 'NETWORK', href: '#network' },
-  { label: 'COVERAGE', href: '#coverage' },
+  { label: 'SERVICES', href: '#services' },
   { label: 'PRICING', href: '#pricing' },
+  { label: 'COVERAGE', href: '#coverage' },
   { label: 'PARTNERSHIP', href: '#partnership' },
-  { label: 'CONTACT', href: '#contact' },
+  { label: 'CONTACT', href: '#footer' },
 ];
 
 export const serviceOptions = [

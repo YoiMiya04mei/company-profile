@@ -220,53 +220,123 @@ export const networkFeatures = [
   'Enterprise-grade infrastructure',
 ];
 
+export const partners = [
+  {
+    name: 'CGS',
+    fullName: 'Cahaya Graha Selaras',
+    tagline: 'Your Reliable Fiber Optic Network',
+    logo: '/partners/cgs.jpg',
+    category: 'Fiber Optic Network',
+  },
+  {
+    name: 'iFORTE',
+    fullName: 'PT iForte Solusi Infotek',
+    tagline: 'Leading Connectivity & Telecommunication Provider',
+    logo: '/partners/iforte.png',
+    category: 'Telecommunication Infrastructure',
+  },
+  {
+    name: 'APJII',
+    fullName: 'Asosiasi Penyelenggara Jasa Internet Indonesia',
+    tagline: 'National Internet Service Provider Association',
+    logo: '/partners/apjii.png',
+    category: 'ISP Official Association',
+  },
+  {
+    name: 'Meta',
+    fullName: 'Meta Platforms, Inc.',
+    tagline: 'Global Technology & Connectivity Ecosystem',
+    logo: '/partners/meta.png',
+    category: 'Global Tech & Ecosystem Partner',
+  },
+  {
+    name: 'Rapid Network',
+    fullName: 'Rapid Network',
+    tagline: 'High Speed Network Provider',
+    logo: '/partners/rapid-network.png',
+    category: 'Network Provider',
+  },
+  {
+    name: 'JKT-IX',
+    fullName: 'Jakarta Internet Exchange',
+    tagline: 'Internet Exchange Point',
+    logo: '/partners/jkt-ix.png',
+    category: 'Internet Exchange',
+  },
+  {
+    name: 'MVnet',
+    fullName: 'MVnet',
+    tagline: 'Innovative Network Solutions',
+    logo: '/partners/mvnet.jpg',
+    category: 'Network Solutions',
+  },
+  {
+    name: 'IIX - APJII',
+    fullName: 'Indonesia Internet Exchange',
+    tagline: 'National Internet Exchange Point',
+    logo: '/partners/iix-apjii.png',
+    category: 'Internet Exchange',
+  },
+  {
+    name: 'Trans Hybrid Communication',
+    fullName: 'PT Trans Hybrid Communication',
+    tagline: 'Integrated Telecommunication Provider',
+    logo: '/partners/trans-hybrid.png',
+    category: 'Telecommunication Provider',
+  },
+  {
+    name: 'OpenIXP',
+    fullName: 'Open Internet Exchange Point',
+    tagline: 'Open Internet Exchange Point Indonesia',
+    logo: '/partners/openixp.png',
+    category: 'Internet Exchange',
+  },
+  {
+    name: '36 Pixels',
+    fullName: '36 Pixels',
+    tagline: 'Digital Solutions Provider',
+    logo: '/partners/36-px@3x-1.png',
+    category: 'Digital Solutions',
+  },
+];
+
+export const partnershipLogos = [
+  { name: 'Skyline', logo: '/partnership/1.-Logo-Skyline.png' },
+  { name: 'Blip Indonesia', logo: '/partnership/blip_indonesia_logo.jpg' },
+  { name: 'GlobalNet', logo: '/partnership/globalnetinc_logo.jpg' },
+  { name: 'IDCloudHost', logo: '/partnership/idCloudHost-Logo-horizontal-01.webp' },
+  { name: 'Kino Indonesia', logo: '/partnership/Kino_Indonesia_logo.svg' },
+  { name: 'Passnet', logo: '/partnership/logo-passnet-color-1.png' },
+  { name: 'BWS', logo: '/partnership/LOGO_BWS_Biru.png' },
+  { name: 'Netciti', logo: '/partnership/netciti_logo.png' },
+  { name: 'Universal Broadband', logo: '/partnership/Uiversal-Broadband-LOGO-.webp' },
+  { name: 'Cyber Park', logo: '/partnership/logo-cp.png' },
+  { name: 'WhatsApp Partner', logo: '/partnership/WhatsApp-Image-2021-10-14-at-10.26.29-1.webp' },
+  { name: 'Partner Network', logo: '/partnership/1666152060762.jpg' },
+  { name: 'Fiber Partner', logo: '/partnership/1676137943.png' },
+  { name: 'Cloud Partner', logo: '/partnership/8af5bc173e3d38e1e1d9b0d365c167b2a5581ac9.webp' },
+  { name: 'Tech Partner', logo: '/partnership/b8a798e16d49ebf530cd1551394561d8.jpg' },
+  { name: 'Digital Partner', logo: '/partnership/images.png' },
+  { name: 'Network Partner 1', logo: '/partnership/images (1).png' },
+  { name: 'ISP Partner 1', logo: '/partnership/images (2).jpg' },
+  { name: 'ISP Partner 2', logo: '/partnership/images (2).png' },
+  { name: 'Telco Partner 1', logo: '/partnership/images (3).jpg' },
+  { name: 'Telco Partner 2', logo: '/partnership/images (3).png' },
+  { name: 'Infra Partner 1', logo: '/partnership/images (4).jpg' },
+  { name: 'Infra Partner 2', logo: '/partnership/images (4).png' },
+  { name: 'ISP Partner 3', logo: '/partnership/images (5).jpg' },
+  { name: 'ISP Partner 4', logo: '/partnership/images (6).jpg' },
+  { name: 'Corporate Partner', logo: '/partnership/logo-1-1024x302.png' },
+  { name: 'Dark Logo Partner', logo: '/partnership/logo-dark.webp' },
+  { name: 'Enterprise Partner', logo: '/partnership/M2TnrgkN4FJXuIF-73WQ3DNQcnhMdHpUdW8vMjg4TE42VU1ITHBNMFQrTThTN2VLTWJRQi9ua05tdzA9.png' },
+  { name: 'Broadband Partner', logo: '/partnership/M2TnrgkN4FJXuIF-73WQ3FJlL0tZTHdIY1BCQ0pmYWE1OXN4OXZuNnNhUlh2elNhbmZrb3d2ZzZ1eWs9.jpg' },
+];
+
 export const partnership = {
-  eyebrow: 'PARTNERSHIP PROGRAM',
+  eyebrow: 'STRATEGIC PARTNERSHIP',
   title: 'Grow Together with Jembatan Data',
   description:
-    'Kami membuka peluang kolaborasi dengan ISP, reseller, technology partner, dan pemilik infrastruktur untuk menghadirkan konektivitas yang lebih luas dan layanan yang lebih baik bagi pelanggan Indonesia.',
-  benefits: [
-    {
-      icon: 'Handshake',
-      title: 'Partner Pricing',
-      description: 'Skema harga khusus dan fleksibel sesuai model bisnis partner.',
-    },
-    {
-      icon: 'TrendingUp',
-      title: 'Business Growth',
-      description: 'Kembangkan portofolio layanan dengan dukungan konektivitas kami.',
-    },
-    {
-      icon: 'Headphones',
-      title: 'Technical Support',
-      description: 'Dukungan teknis dan koordinasi NOC untuk menjaga kualitas layanan.',
-    },
-    {
-      icon: 'Share2',
-      title: 'Long-term Collaboration',
-      description: 'Bangun kerja sama berkelanjutan dengan proses yang transparan.',
-    },
-  ],
-  programs: [
-    {
-      icon: 'Router',
-      title: 'ISP & Reseller Partner',
-      description: 'Program wholesale bandwidth untuk ISP lokal, reseller, dan network operator.',
-      tags: ['Wholesale Bandwidth', 'IP Transit', 'BGP Support'],
-    },
-    {
-      icon: 'Cable',
-      title: 'Infrastructure Partner',
-      description: 'Kolaborasi last-mile, fiber, data center, dan infrastruktur jaringan.',
-      tags: ['Last-mile Access', 'Fiber Collaboration', 'Colocation'],
-    },
-    {
-      icon: 'Workflow',
-      title: 'Technology Partner',
-      description: 'Sinergi solusi teknologi untuk membantu pelanggan mempercepat transformasi digital.',
-      tags: ['Joint Solution', 'Integration', 'Managed Services'],
-    },
-  ],
+    'Kami bermitra dan bersinergi dengan penyedia infrastruktur telekomunikasi, jaringan fiber optic terkemuka, asosiasi resmi, dan ekosistem teknologi global untuk menghadirkan konektivitas andal di seluruh Indonesia.',
 };
 
 export const monitoringData = {

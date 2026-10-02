@@ -6,7 +6,6 @@ import About from '@/components/About';
 import Services from '@/components/Services';
 import FeaturedService from '@/components/FeaturedService';
 import Network from '@/components/Network';
-import Monitoring from '@/components/Monitoring';
 import Coverage from '@/components/Coverage';
 import Pricing from '@/components/Pricing';
 import WhyChooseUs from '@/components/WhyChooseUs';
@@ -28,7 +27,6 @@ function App() {
         <Hero />
         <About />
         <Network />
-        <Monitoring />
         <Services />
         <FeaturedService />
         <Pricing />

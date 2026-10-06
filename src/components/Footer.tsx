@@ -1,13 +1,27 @@
-import { Instagram, Facebook, Linkedin, MapPin, Server, CreditCard } from 'lucide-react';
+import { Instagram, Facebook, MapPin, Server, CreditCard } from 'lucide-react';
 import { company } from '@/data/company';
 import { useTheme } from '@/context/ThemeContext';
+
+function TikTokIcon({ className = "w-4 h-4" }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      fill="currentColor"
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+    >
+      <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 3 15.68 6.34 6.34 0 0 0 9.37 22a6.3 6.3 0 0 0 6.27-6.31V9.28a8.16 8.16 0 0 0 4.95 1.66V7.49a4.86 4.86 0 0 1-1-.8z" />
+    </svg>
+  );
+}
 
 const footerServices = [
   'Dedicated Internet',
   'Corporate Internet',
-  'IP Transit',
   'Colocation',
   'Network Solutions',
+  'Managed Services',
+  'Internet Broadband',
 ];
 
 const footerCompany = [
@@ -68,13 +82,13 @@ export default function Footer() {
                 <Facebook className="w-4 h-4" />
               </a>
               <a
-                href={company.social.linkedin}
+                href={company.social.tiktok}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-9 h-9 bg-white dark:bg-navy-800 border border-slate-200 dark:border-navy-700 rounded-lg flex items-center justify-center text-slate-500 dark:text-gray-400 hover:text-cyan-600 dark:hover:text-cyan-400 hover:border-cyan-500/30 shadow-sm transition-colors"
-                aria-label="LinkedIn"
+                aria-label="TikTok"
               >
-                <Linkedin className="w-4 h-4" />
+                <TikTokIcon className="w-4 h-4" />
               </a>
             </div>
           </div>

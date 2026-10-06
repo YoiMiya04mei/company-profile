@@ -33,22 +33,24 @@ export default function Services() {
         </div>
 
         {/* Service cards */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {services.map((service, i) => {
             const Icon = iconMap[service.icon] || Globe;
             return (
               <div
                 key={i}
-                className="group bg-navy-800/50 border border-navy-700/50 rounded-2xl p-6 card-hover hover:border-cyan-500/30 transition-colors"
+                className="group bg-navy-800/50 border border-navy-700/50 rounded-2xl p-6 card-hover hover:border-cyan-500/30 transition-colors flex flex-col justify-between h-full"
               >
-                <div className="w-12 h-12 bg-gradient-to-br from-cyan-500/20 to-blue-600/20 rounded-xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
-                  <Icon className="w-6 h-6 text-cyan-400" />
+                <div>
+                  <div className="w-12 h-12 bg-gradient-to-br from-cyan-500/20 to-blue-600/20 rounded-xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+                    <Icon className="w-6 h-6 text-cyan-400" />
+                  </div>
+                  <h3 className="text-white font-bold text-lg mb-2">{service.title}</h3>
+                  <p className="text-gray-400 text-sm leading-relaxed mb-4">{service.description}</p>
                 </div>
-                <h3 className="text-white font-bold text-lg mb-2">{service.title}</h3>
-                <p className="text-gray-400 text-sm leading-relaxed mb-4">{service.description}</p>
                 <button
                   onClick={() => setSelected(service)}
-                  className="flex items-center gap-1.5 text-cyan-400 text-sm font-medium hover:gap-3 transition-all"
+                  className="flex items-center gap-1.5 text-cyan-400 text-sm font-medium hover:gap-3 transition-all mt-auto pt-2"
                 >
                   Learn More
                   <ArrowRight className="w-4 h-4" />

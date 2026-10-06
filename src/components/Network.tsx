@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useReveal } from '@/hooks/useReveal';
-import { ArrowUpRight, Radio, ShieldCheck, Sparkles } from 'lucide-react';
+import { Radio, Sparkles } from 'lucide-react';
 
 // ── Canvas dimensions (viewBox basis) ────────────────────────────────────────
 const CW = 1100;
@@ -8,7 +8,7 @@ const CH = 620;
 
 // ── JDP Hub position ──────────────────────────────────────────────────────────
 const HUB_X = 550;
-const HUB_Y = 445;
+const HUB_Y = 415;
 
 // ── Exchange / Peer Node data with staggered positions ────────────────────────
 interface ENode {
@@ -23,7 +23,7 @@ const nodes: ENode[] = [
   // ── Row 1 — Internet Exchange Points (IXP) ──
   { id: 'iix',      name: 'IIX APJII',    logo: '/exchange/images (5).png',                         x: 175,  y: 62  },
   { id: 'jkt-ix',   name: 'JKT-IX',       logo: '/exchange/jkt-ixlogo (1).png',                     x: 335,  y: 44  },
-  { id: 'epix',     name: 'EPIX',         logo: '/exchange/epix-logo (1).webp',                     x: 550,  y: 36  },
+  { id: 'digital-edge', name: 'Digital Edge DC', logo: '/exchange/digital-edge-logo.jpg',             x: 700,  y: 174 },
   { id: 'openixp',  name: 'OpenIXP',      logo: '/exchange/openixp.png',                            x: 765,  y: 44  },
   { id: 'ace',      name: 'ACE AS139341', logo: '/exchange/sitelogo.2293256d.png',                   x: 925,  y: 62  },
 
@@ -32,7 +32,7 @@ const nodes: ENode[] = [
   { id: 'meta',         name: 'Meta',          logo: '/exchange/meta-logo.webp',                     x: 220,  y: 165 },
   { id: 'netflix',      name: 'Netflix',       logo: '/exchange/netflix-logo-png-svg.webp',          x: 400,  y: 174 },
   { id: 'akamai',       name: 'Akamai',        logo: '/exchange/akamai-logo-png-svg.webp',           x: 550,  y: 158 },
-  { id: 'google-cache', name: 'Google Cache',  logo: '/exchange/images (6).png',                    x: 700,  y: 174 },
+  { id: 'google-cache', name: 'Google Cache',  logo: '/exchange/images (6).png',                    x: 550,  y: 36  },
   { id: 'alibaba-cloud',name: 'Alibaba Cloud', logo: '/exchange/alibaba-cloud-logo.webp',            x: 880,  y: 165 },
   { id: 'zenlayer',     name: 'Zenlayer',      logo: '/exchange/nnttpeosv1k1x5x9ukts.png',           x: 1040, y: 185 },
 
@@ -41,6 +41,11 @@ const nodes: ENode[] = [
   { id: 'amazon',   name: 'Amazon',       logo: '/exchange/amazon-logo-png-svg.webp',               x: 370,  y: 295 },
   { id: 'sea',      name: 'Sea Group',    logo: '/exchange/Sea_Group_logo.svg.webp',                x: 550,  y: 292 },
   { id: 'gcore',    name: 'Gcore',        logo: '/exchange/gcore-logo-png-svg.webp',                x: 730,  y: 295 },
+
+  // ── Row 4 — Regional JDPIX Nodes ──
+  { id: 'jdpix-sukabumi', name: 'JDPIX SUKABUMI', logo: '/logo-jdp.png', x: 320, y: 545 },
+  { id: 'jdpix-bandung',  name: 'JDPIX BANDUNG',  logo: '/logo-jdp.png', x: 550, y: 545 },
+  { id: 'jdpix-lombok',   name: 'JDPIX LOMBOK',   logo: '/logo-jdp.png', x: 780, y: 545 },
 ];
 
 // ── Generate cubic-bezier path from node → hub ───────────────────────────────
@@ -305,23 +310,7 @@ export default function NetworkInfrastructure() {
                       {node.name}
                     </div>
 
-                    {/* Hover tooltip */}
-                    {isHot && (
-                      <div className="absolute top-full mt-2 left-1/2 -translate-x-1/2 w-44 bg-navy-900/98 border border-cyan-500/50 rounded-xl p-2.5 shadow-2xl z-50 pointer-events-none animate-fade-in">
-                        <div className="text-[10px] font-bold text-white mb-1.5 flex items-center justify-between">
-                          <span>{node.name}</span>
-                          <span className="px-1.5 py-0.5 bg-emerald-500/20 text-emerald-400 rounded text-[9px]">Active</span>
-                        </div>
-                        <div className="grid grid-cols-2 gap-1.5 text-[9px] bg-black/30 rounded-lg p-1.5">
-                          <div><span className="text-slate-400 block">Bandwidth</span><span className="text-cyan-300 font-bold">100G</span></div>
-                          <div><span className="text-slate-400 block">Latency</span><span className="text-emerald-400 font-bold">&lt;2ms</span></div>
-                          <div><span className="text-slate-400 block">Protocol</span><span className="text-white font-bold">BGP4</span></div>
-                          <div><span className="text-slate-400 block">Uptime</span><span className="text-emerald-400 font-bold">99.99%</span></div>
-                        </div>
-                        {/* Tooltip arrow */}
-                        <div className="absolute bottom-full left-1/2 -translate-x-1/2 w-0 h-0 border-l-8 border-r-8 border-b-8 border-l-transparent border-r-transparent border-b-navy-900/98" />
-                      </div>
-                    )}
+
                   </div>
                 );
               })}
@@ -383,86 +372,6 @@ export default function NetworkInfrastructure() {
             </div>
           </div>
 
-          {/* ════════════════════════════════════════
-              JDPIX SERVICE CARDS (below topology)
-              ════════════════════════════════════════ */}
-          <div className="mt-6 pt-5 border-t border-navy-700/60">
-            {/* Label */}
-            <div className="flex items-center justify-center gap-3 mb-5">
-              <div className="flex-1 h-px bg-gradient-to-r from-transparent to-cyan-500/30" />
-              <span className="text-[11px] font-bold uppercase tracking-widest text-cyan-400 flex items-center gap-1.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
-                Layanan JDPIX
-                <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
-              </span>
-              <div className="flex-1 h-px bg-gradient-to-l from-transparent to-cyan-500/30" />
-            </div>
-
-            <div className="flex flex-wrap justify-center gap-4">
-              {/* JDPIX Standard */}
-              <div className="flex-1 min-w-[220px] max-w-xs bg-gradient-to-br from-cyan-500/15 to-blue-700/20 border border-cyan-400/40 rounded-2xl p-4 shadow-lg">
-                <div className="flex items-center gap-2.5 mb-2.5">
-                  <div className="w-9 h-9 rounded-full bg-white p-1.5 flex items-center justify-center border-2 border-cyan-400 shadow flex-shrink-0">
-                    <img src="/logo-jdp.png" alt="JDPIX" className="max-h-full max-w-full object-contain" />
-                  </div>
-                  <div>
-                    <div className="text-white font-black text-sm leading-tight">JDPIX</div>
-                    <div className="text-[10px] text-cyan-300 font-semibold">Internet Exchange Service</div>
-                  </div>
-                </div>
-                <ul className="space-y-1.5 text-[10px] text-slate-300">
-                  {['100G Domestic Peering', 'BGP Route Exchange', 'Multi-homed Connectivity', '24/7 NOC Monitoring'].map(f => (
-                    <li key={f} className="flex items-center gap-1.5">
-                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 flex-shrink-0" />{f}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* JDPIX Premium */}
-              <div className="relative flex-1 min-w-[220px] max-w-xs bg-gradient-to-br from-blue-600/30 to-cyan-500/20 border-2 border-cyan-300/60 rounded-2xl p-4 shadow-xl shadow-cyan-500/15">
-                <div className="absolute -top-3 left-5 bg-gradient-to-r from-cyan-500 to-blue-600 text-white text-[9px] font-black px-3 py-0.5 rounded-full uppercase tracking-widest shadow">
-                  Premium
-                </div>
-                <div className="flex items-center gap-2.5 mb-2.5 mt-1">
-                  <div className="w-9 h-9 rounded-full bg-white p-1.5 flex items-center justify-center border-2 border-cyan-300 shadow flex-shrink-0">
-                    <img src="/logo-jdp.png" alt="JDPIX Premium" className="max-h-full max-w-full object-contain" />
-                  </div>
-                  <div>
-                    <div className="text-white font-black text-sm leading-tight">JDPIX Premium</div>
-                    <div className="text-[10px] text-cyan-200 font-semibold">Managed IX + Global IP Transit</div>
-                  </div>
-                </div>
-                <ul className="space-y-1.5 text-[10px] text-slate-200">
-                  {['Dedicated Peering VLAN', 'Global Transit + CDN Access', 'SLA 99.99% Uptime Guarantee', 'Custom BGP Policy & Communities', 'Priority NOC + Technical Support'].map(f => (
-                    <li key={f} className="flex items-center gap-1.5">
-                      <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 flex-shrink-0" />{f}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          {/* ── Footer CTA ── */}
-          <div className="mt-6 pt-5 border-t border-navy-700/50 flex flex-col sm:flex-row items-center justify-between gap-4">
-            <div className="flex items-center gap-3 text-center sm:text-left">
-              <div className="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center flex-shrink-0">
-                <ShieldCheck className="w-5 h-5 text-cyan-400" />
-              </div>
-              <div>
-                <div className="text-sm font-bold text-white">Carrier-Neutral Redundant Interconnect</div>
-                <div className="text-xs text-gray-400">Multi-path BGP rerouting — zero single-point-of-failure</div>
-              </div>
-            </div>
-            <a
-              href="#footer"
-              className="inline-flex items-center gap-2 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-bold text-sm px-5 py-2.5 rounded-xl transition-all shadow-md shadow-cyan-500/20 whitespace-nowrap btn-shine"
-            >
-              Konsultasi JDPIX / Peering
-              <ArrowUpRight className="w-4 h-4" />
-            </a>
-          </div>
         </div>
       </div>
     </section>

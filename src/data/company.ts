@@ -13,21 +13,21 @@ export const company = {
     'PT. Jembatan Data Pangrango adalah perusahaan Internet Service Provider yang menyediakan layanan konektivitas internet, jaringan bisnis, dedicated internet, IP Transit, colocation, dan solusi jaringan untuk pelanggan enterprise, corporate, ISP/reseller, maupun institusi.',
   website: 'jembatandata.com',
 
-  // Contact — PLACEHOLDERS (replace with real data)
+  // Contact
   contact: {
     whatsapp: '6289531825259', // Placeholder — include country code, no +
     whatsappDisplay: '+62 895-3282-5259',
-    email: 'info@jembatandata.com',
-    address: 'Jl. Placeholder No. 123, Jakarta, Indonesia',
+    email: 'customerservice@jembatandata.com',
+    address: 'Jl. Pabuaran No.51, Nyomplong, Kec. Warudoyong, Kota Sukabumi, Jawa Barat 43131',
     operationalHours: '24/7 Customer Support • Mon–Fri 09:00–17:00 WIB (Sales)',
   },
 
-  // Social Media — PLACEHOLDERS
+  // Social Media
   social: {
-    instagram: 'https://instagram.com/jembatandata',
-    facebook: 'https://facebook.com/jembatandata',
-    linkedin: 'https://linkedin.com/company/jembatandata',
-    googleMaps: 'https://maps.google.com/?q=Jakarta,Indonesia',
+    instagram: 'https://www.instagram.com/sukabuminetwork?stkn=MTE0YmcycnQ2cW9vdQ==',
+    facebook: 'https://www.facebook.com/share/1JoQf1LctD/',
+    tiktok: 'https://www.tiktok.com/@sukabuminetwork.jdp?_r=1&_t=ZS-9AJXzj8gW9K',
+    googleMaps: 'https://maps.google.com/?q=Jl.+Pabuaran+No.51,+Nyomplong,+Kec.+Warudoyong,+Kota+Sukabumi,+Jawa+Barat+43131',
   },
 
   targetCustomers: [
@@ -95,20 +95,6 @@ export const services = [
     ],
   },
   {
-    icon: 'Network',
-    title: 'IP Transit',
-    description:
-      'Solusi konektivitas upstream dan internet transit untuk ISP dan network operator.',
-    features: [
-      'Multiple upstream providers',
-      'BGP routing support',
-      'Low latency transit',
-      'High capacity ports',
-      'IPv4 & IPv6 support',
-      'Flexible commitment levels',
-    ],
-  },
-  {
     icon: 'Server',
     title: 'Colocation',
     description:
@@ -162,20 +148,6 @@ export const services = [
       'Affordable pricing',
       'Reliable connection',
       'Local support',
-    ],
-  },
-  {
-    icon: 'Share2',
-    title: 'ISP / Reseller',
-    description:
-      'Solusi konektivitas untuk ISP lokal, reseller, dan partner jaringan.',
-    features: [
-      'Wholesale bandwidth',
-      'Partner pricing',
-      'Technical support',
-      'White-label options',
-      'Flexible contracts',
-      'Growth partnership',
     ],
   },
 ];
@@ -521,10 +493,9 @@ export const navLinks = [
 export const serviceOptions = [
   'Dedicated Internet',
   'Corporate Internet',
-  'IP Transit',
   'Colocation',
   'Network Solution',
   'Managed Service',
-  'ISP / Reseller',
+  'Internet Broadband',
   'Other',
 ];

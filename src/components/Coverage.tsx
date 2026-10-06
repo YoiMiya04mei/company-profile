@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import { Send, CheckCircle2, X, Layers, ChevronRight, RefreshCw, ShieldCheck, Zap, MapPin, ZoomIn } from 'lucide-react';
+import { Layers, ChevronRight, RefreshCw, ShieldCheck, MapPin, ZoomIn } from 'lucide-react';
 import { coverageRegions, indonesiaOverviewBounds, CoverageRegion } from '@/data/coverageData';
 import { useReveal } from '@/hooks/useReveal';
 import { useTheme } from '@/context/ThemeContext';
@@ -11,16 +11,6 @@ export default function Coverage() {
   const { resolvedTheme } = useTheme();
   const [selectedRegion, setSelectedRegion] = useState<CoverageRegion | null>(null);
   const [hoveredRegionId, setHoveredRegionId] = useState<string | null>(null);
-  const [showForm, setShowForm] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
-  const [formData, setFormData] = useState({
-    name: '',
-    company: '',
-    whatsapp: '',
-    address: '',
-    region: 'Jabodetabek',
-    bandwidth: '',
-  });
 
   const mapContainerRef = useRef<HTMLDivElement>(null);
   const mapInstanceRef = useRef<L.Map | null>(null);
@@ -146,7 +136,6 @@ export default function Coverage() {
 
       geoLayer.on('click', () => {
         setSelectedRegion(region);
-        setFormData((prev) => ({ ...prev, region: region.name }));
         geoLayer.bringToFront();
         map.fitBounds(geoLayer.getBounds(), {
           padding: [50, 50],
@@ -221,7 +210,6 @@ export default function Coverage() {
   // Handler when clicking region item in the right list
   const handleSelectRegion = (region: CoverageRegion) => {
     setSelectedRegion(region);
-    setFormData((prev) => ({ ...prev, region: region.name }));
 
     const map = mapInstanceRef.current;
     const layer = geoLayersRef.current.get(region.id);
@@ -290,15 +278,6 @@ export default function Coverage() {
 
   const handleZoomOut = () => {
     mapInstanceRef.current?.zoomOut();
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => {
-      setSubmitted(false);
-      setShowForm(false);
-    }, 3000);
   };
 
   return (
@@ -542,156 +521,9 @@ export default function Coverage() {
               </div>
             </div>
 
-            {/* Note & CTA Button */}
-            <div className="pt-2 space-y-3">
-              <div className="p-3 bg-blue-50/80 dark:bg-navy-900/90 border border-blue-200/80 dark:border-navy-700/80 rounded-xl flex items-start gap-2.5">
-                <Zap className="w-4 h-4 text-blue-600 dark:text-cyan-400 flex-shrink-0 mt-0.5" />
-                <p className="text-slate-700 dark:text-gray-300 text-xs leading-relaxed font-medium">
-                  Layanan mencakup Dedicated Internet, Broadband Bisnis, IP Transit & Dark Fiber. Hubungi kami untuk survey lokasi instan.
-                </p>
-              </div>
-
-              <button
-                onClick={() => {
-                  if (selectedRegion) {
-                    setFormData((prev) => ({ ...prev, region: selectedRegion.name }));
-                  }
-                  setShowForm(true);
-                }}
-                className="w-full flex items-center justify-center gap-2.5 bg-gradient-to-r from-cyan-500 via-blue-600 to-indigo-600 hover:from-cyan-400 hover:to-indigo-500 text-white py-3.5 px-6 rounded-xl font-bold shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/40 transition-all duration-300 btn-shine cursor-pointer group active:scale-[0.99]"
-              >
-                <Zap className="w-4 h-4 text-cyan-200 group-hover:animate-bounce" />
-                <span>Check Availability</span>
-              </button>
-            </div>
           </div>
         </div>
       </div>
-
-      {/* Coverage form modal */}
-      {showForm && (
-        <div
-          className="fixed inset-0 z-[1000] flex items-center justify-center p-4 bg-navy-950/85 backdrop-blur-md animate-fade-in"
-          onClick={() => setShowForm(false)}
-        >
-          <div
-            className="bg-navy-900 border border-cyan-500/30 rounded-2xl max-w-lg w-full p-6 sm:p-8 shadow-2xl max-h-[90vh] overflow-y-auto relative"
-            onClick={(e) => e.stopPropagation()}
-          >
-            {submitted ? (
-              <div className="text-center py-8">
-                <CheckCircle2 className="w-16 h-16 text-cyan-400 mx-auto mb-4 animate-bounce" />
-                <h3 className="text-white font-bold text-2xl mb-2">Permintaan Terkirim!</h3>
-                <p className="text-gray-300 text-sm">
-                  Tim teknis kami akan segera melakukan pengecekan ketersediaan coverage di lokasi Anda dan menghubungi Anda via WhatsApp.
-                </p>
-              </div>
-            ) : (
-              <>
-                <div className="flex items-start justify-between mb-6 pb-4 border-b border-navy-700/80">
-                  <div>
-                    <h3 className="text-white font-bold text-2xl">Check Availability</h3>
-                    <p className="text-gray-400 text-sm mt-1">
-                      Cek ketersediaan layanan dan perkiraan waktu aktivasi di wilayah Anda.
-                    </p>
-                  </div>
-                  <button
-                    onClick={() => setShowForm(false)}
-                    className="text-gray-400 hover:text-white p-1 rounded-lg hover:bg-navy-800 transition-colors cursor-pointer"
-                  >
-                    <X className="w-5 h-5" />
-                  </button>
-                </div>
-
-                <form onSubmit={handleSubmit} className="space-y-4">
-                  <div>
-                    <label className="text-gray-300 text-sm font-medium block mb-1.5">Wilayah Cakupan</label>
-                    <select
-                      value={formData.region}
-                      onChange={(e) => setFormData({ ...formData, region: e.target.value })}
-                      className="w-full bg-navy-950 border border-navy-700 text-white rounded-xl px-4 py-2.5 text-sm focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 focus:outline-none transition-colors"
-                    >
-                      {coverageRegions.map((reg) => (
-                        <option key={reg.id} value={reg.name}>
-                          {reg.name} ({reg.subtitle})
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-
-                  <div className="grid sm:grid-cols-2 gap-3.5">
-                    <div>
-                      <label className="text-gray-300 text-sm font-medium block mb-1.5">Nama Lengkap</label>
-                      <input
-                        required
-                        type="text"
-                        placeholder="Contoh: Budi Pratama"
-                        value={formData.name}
-                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                        className="w-full bg-navy-950 border border-navy-700 text-white rounded-xl px-4 py-2.5 text-sm focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 focus:outline-none transition-colors"
-                      />
-                    </div>
-                    <div>
-                      <label className="text-gray-300 text-sm font-medium block mb-1.5">Perusahaan / Instansi</label>
-                      <input
-                        type="text"
-                        placeholder="Nama PT / Instansi"
-                        value={formData.company}
-                        onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                        className="w-full bg-navy-950 border border-navy-700 text-white rounded-xl px-4 py-2.5 text-sm focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 focus:outline-none transition-colors"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="grid sm:grid-cols-2 gap-3.5">
-                    <div>
-                      <label className="text-gray-300 text-sm font-medium block mb-1.5">Nomor WhatsApp</label>
-                      <input
-                        required
-                        type="tel"
-                        placeholder="08xxxxxxxxxx"
-                        value={formData.whatsapp}
-                        onChange={(e) => setFormData({ ...formData, whatsapp: e.target.value })}
-                        className="w-full bg-navy-950 border border-navy-700 text-white rounded-xl px-4 py-2.5 text-sm focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 focus:outline-none transition-colors"
-                      />
-                    </div>
-                    <div>
-                      <label className="text-gray-300 text-sm font-medium block mb-1.5">Estimasi Bandwidth</label>
-                      <input
-                        type="text"
-                        placeholder="Contoh: 100 Mbps / 1 Gbps"
-                        value={formData.bandwidth}
-                        onChange={(e) => setFormData({ ...formData, bandwidth: e.target.value })}
-                        className="w-full bg-navy-950 border border-navy-700 text-white rounded-xl px-4 py-2.5 text-sm focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 focus:outline-none transition-colors"
-                      />
-                    </div>
-                  </div>
-
-                  <div>
-                    <label className="text-gray-300 text-sm font-medium block mb-1.5">Alamat Lengkap Titik Lokasi</label>
-                    <textarea
-                      required
-                      rows={3}
-                      placeholder="Masukkan alamat lengkap, nama gedung, jalan, atau patokan lokasi..."
-                      value={formData.address}
-                      onChange={(e) => setFormData({ ...formData, address: e.target.value })}
-                      className="w-full bg-navy-950 border border-navy-700 text-white rounded-xl px-4 py-2.5 text-sm focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 focus:outline-none transition-colors resize-none"
-                    />
-                  </div>
-
-                  <button
-                    type="submit"
-                    className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white py-3.5 rounded-xl font-bold shadow-lg shadow-cyan-500/25 transition-all btn-shine mt-4 cursor-pointer"
-                  >
-                    <Send className="w-4 h-4" />
-                    Kirim Permintaan Survey
-                  </button>
-                </form>
-              </>
-            )}
-          </div>
-        </div>
-      )}
     </section>
   );
 }

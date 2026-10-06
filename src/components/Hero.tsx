@@ -1,7 +1,9 @@
 import { ArrowRight, LayoutGrid, ShieldCheck, Activity, Headphones } from 'lucide-react';
 import { company } from '@/data/company';
+import { useLanguage } from '@/context/LanguageContext';
 
 export default function Hero() {
+  const { t } = useLanguage();
   const scrollTo = (href: string) => {
     const el = document.querySelector(href);
     if (el) el.scrollIntoView({ behavior: 'smooth' });
@@ -19,25 +21,23 @@ export default function Hero() {
       <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-600/20 rounded-full blur-3xl" />
       <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-cyan-500/15 rounded-full blur-3xl" />
 
-
-
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left content */}
           <div className="text-center lg:text-left">
             <div className="inline-flex items-center gap-2 bg-cyan-500/10 border border-cyan-500/30 rounded-full px-4 py-1.5 mb-6 animate-fade-in-up">
               <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
-              <span className="text-cyan-300 text-sm font-medium">{company.tagline}</span>
+              <span className="text-cyan-300 text-sm font-medium">{t.hero.tagline}</span>
             </div>
 
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-[1.15] mb-6 animate-fade-in-up delay-100">
-              Reliable Internet.
+              {t.hero.title1}
               <br />
-              <span className="gradient-text">Built for Your Business.</span>
+              <span className="gradient-text">{t.hero.title2}</span>
             </h1>
 
             <p className="text-lg text-gray-400 mb-8 max-w-xl mx-auto lg:mx-0 leading-relaxed animate-fade-in-up delay-200">
-              Solusi konektivitas internet dan infrastruktur jaringan yang cepat, stabil, aman, dan siap mendukung kebutuhan digital bisnis Anda.
+              {t.hero.description}
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start animate-fade-in-up delay-300">
@@ -45,7 +45,7 @@ export default function Hero() {
                 onClick={() => scrollTo('#services')}
                 className="flex items-center justify-center gap-2 bg-gradient-to-r from-cyan-500 to-blue-600 text-white px-7 py-3.5 rounded-xl font-semibold hover:shadow-lg hover:shadow-cyan-500/30 transition-all btn-shine"
               >
-                Jelajahi Layanan
+                {t.hero.exploreServices}
                 <ArrowRight className="w-5 h-5" />
               </button>
               <a
@@ -55,16 +55,16 @@ export default function Hero() {
                 className="flex items-center justify-center gap-2 bg-white/5 border border-white/15 text-white px-7 py-3.5 rounded-xl font-semibold hover:bg-white/10 hover:border-cyan-500/40 transition-all"
               >
                 <LayoutGrid className="w-5 h-5" />
-                Portal Login
+                {t.hero.portalLogin}
               </a>
             </div>
 
             {/* Floating info cards */}
             <div className="grid grid-cols-3 gap-3 mt-12 max-w-lg mx-auto lg:mx-0 animate-fade-in-up delay-500">
               {[
-                { icon: ShieldCheck, value: '99.9%', label: 'Network Availability' },
-                { icon: Activity, value: '24/7', label: 'Network Monitoring' },
-                { icon: Headphones, value: 'Dedicated', label: 'Support' },
+                { icon: ShieldCheck, value: '99.9%', label: t.hero.availability },
+                { icon: Activity, value: '24/7', label: t.hero.monitoring },
+                { icon: Headphones, value: 'Dedicated', label: t.hero.support },
               ].map((card, i) => (
                 <div
                   key={i}

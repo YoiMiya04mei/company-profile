@@ -1,6 +1,7 @@
 import { ShieldCheck, Users, MonitorCheck, Zap } from 'lucide-react';
-import { company, aboutFeatures } from '@/data/company';
+import { aboutFeatures } from '@/data/company';
 import { useReveal } from '@/hooks/useReveal';
+import { useLanguage } from '@/context/LanguageContext';
 
 const iconMap: Record<string, typeof ShieldCheck> = {
   ShieldCheck,
@@ -11,6 +12,7 @@ const iconMap: Record<string, typeof ShieldCheck> = {
 
 export default function About() {
   const { ref, visible } = useReveal<HTMLDivElement>();
+  const { t } = useLanguage();
 
   return (
     <section id="about" className="relative bg-navy-950 py-24 overflow-hidden">
@@ -22,19 +24,15 @@ export default function About() {
       >
         <div className="max-w-4xl mx-auto text-center">
           <div className="inline-flex items-center gap-2 bg-cyan-500/10 border border-cyan-500/30 rounded-full px-4 py-1.5 mb-5 mx-auto">
-            <span className="text-cyan-300 text-sm font-medium">TENTANG KAMI</span>
+            <span className="text-cyan-300 text-sm font-medium">{t.about.badge}</span>
           </div>
 
           <h2 className="text-3xl lg:text-4xl font-extrabold text-white mb-6 leading-tight">
-            Connectivity That Keeps Your <span className="gradient-text">Business Moving</span>
+            {t.about.title1} <span className="gradient-text">{t.about.title2}</span>
           </h2>
 
-          <p className="text-gray-400 text-lg leading-relaxed mb-6">
-            {company.shortName} menyediakan solusi konektivitas dan infrastruktur jaringan untuk membantu perusahaan tetap terhubung, produktif, dan berkembang di era digital.
-          </p>
-
-          <p className="text-gray-500 leading-relaxed mb-12">
-            {company.description}
+          <p className="text-gray-300 text-lg sm:text-xl leading-relaxed mb-12 max-w-3xl mx-auto">
+            {t.about.description}
           </p>
         </div>
 
@@ -42,6 +40,7 @@ export default function About() {
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {aboutFeatures.map((feature, i) => {
             const Icon = iconMap[feature.icon] || ShieldCheck;
+            const item = t.about.features[i] || feature;
             return (
               <div
                 key={i}
@@ -50,8 +49,8 @@ export default function About() {
                 <div className="w-14 h-14 bg-cyan-500/15 rounded-xl flex items-center justify-center mb-5">
                   <Icon className="w-7 h-7 text-cyan-400" />
                 </div>
-                <h3 className="text-white font-bold text-base mb-3">{feature.title}</h3>
-                <p className="text-gray-400 text-sm leading-relaxed">{feature.description}</p>
+                <h3 className="text-white font-bold text-base mb-3">{item.title}</h3>
+                <p className="text-gray-400 text-sm leading-relaxed">{item.description}</p>
               </div>
             );
           })}

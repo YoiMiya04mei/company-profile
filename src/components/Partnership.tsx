@@ -1,9 +1,11 @@
 import { Handshake } from 'lucide-react';
-import { partnership, partners, partnershipLogos } from '@/data/company';
+import { partners, partnershipLogos } from '@/data/company';
 import { useReveal } from '@/hooks/useReveal';
+import { useLanguage } from '@/context/LanguageContext';
 
 export default function Partnership() {
   const { ref, visible } = useReveal<HTMLDivElement>();
+  const { t } = useLanguage();
 
   // Top marquee — partners (/partners folder) — duplicate 3x for seamless loop
   const marqueeListTop = [...partners, ...partners, ...partners];
@@ -24,14 +26,14 @@ export default function Partnership() {
           <div className="inline-flex items-center gap-2 bg-cyan-500/10 border border-cyan-500/30 rounded-full px-4 py-1.5 mb-5 shadow-sm shadow-cyan-500/20">
             <Handshake className="w-4 h-4 text-cyan-400" />
             <span className="text-cyan-300 text-xs sm:text-sm font-semibold tracking-wider uppercase">
-              {partnership.eyebrow}
+              {t.partnership.eyebrow}
             </span>
           </div>
           <h2 className="text-3xl lg:text-4xl font-extrabold text-white mb-4 tracking-tight">
-            Grow Together with <span className="gradient-text">Jembatan Data</span>
+            {t.partnership.title}
           </h2>
           <p className="text-gray-300 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">
-            {partnership.description}
+            {t.partnership.description}
           </p>
         </div>
 

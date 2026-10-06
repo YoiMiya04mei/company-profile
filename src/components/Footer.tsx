@@ -1,6 +1,7 @@
 import { Instagram, Facebook, MapPin, Server, CreditCard } from 'lucide-react';
 import { company } from '@/data/company';
 import { useTheme } from '@/context/ThemeContext';
+import { useLanguage } from '@/context/LanguageContext';
 
 function TikTokIcon({ className = "w-4 h-4" }: { className?: string }) {
   return (
@@ -15,30 +16,24 @@ function TikTokIcon({ className = "w-4 h-4" }: { className?: string }) {
   );
 }
 
-const footerServices = [
-  'Dedicated Internet',
-  'Corporate Internet',
-  'Colocation',
-  'Network Solutions',
-  'Managed Services',
-  'Internet Broadband',
-];
-
-const footerCompany = [
-  { label: 'About', href: '#about' },
-  { label: 'Network', href: '#network' },
-  { label: 'Coverage', href: '#coverage' },
-  { label: 'Partnership', href: '#partnership' },
-  { label: 'Contact', href: '#footer' },
-];
-
 const handleNav = (href: string) => {
   document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
 };
 
 export default function Footer() {
   const { resolvedTheme } = useTheme();
+  const { t } = useLanguage();
   const logoSrc = resolvedTheme === 'dark' ? '/logo-jdp-dark.png' : '/logo-jdp.png';
+
+  const footerCompany = [
+    { label: t.nav.about, href: '#about' },
+    { label: t.nav.network, href: '#network' },
+    { label: t.nav.coverage, href: '#coverage' },
+    { label: t.nav.partnership, href: '#partnership' },
+    { label: t.nav.contact, href: '#footer' },
+  ];
+
+  const translatedFooterServices = t.services.items.map(s => s.title);
 
   return (
     <footer id="footer" className="relative bg-slate-100 dark:bg-navy-950 border-t border-slate-200 dark:border-navy-800 pt-16 pb-8 transition-colors duration-300">
@@ -95,9 +90,9 @@ export default function Footer() {
 
           {/* Services */}
           <div>
-            <h3 className="text-slate-900 dark:text-white font-semibold text-sm mb-4">Services</h3>
+            <h3 className="text-slate-900 dark:text-white font-semibold text-sm mb-4">{t.footer.services}</h3>
             <ul className="space-y-2.5">
-              {footerServices.map((s, i) => (
+              {translatedFooterServices.map((s, i) => (
                 <li key={i}>
                   <button
                     onClick={() => handleNav('#services')}
@@ -112,7 +107,7 @@ export default function Footer() {
 
           {/* Company */}
           <div>
-            <h3 className="text-slate-900 dark:text-white font-semibold text-sm mb-4">Company</h3>
+            <h3 className="text-slate-900 dark:text-white font-semibold text-sm mb-4">{t.footer.company}</h3>
             <ul className="space-y-2.5">
               {footerCompany.map((item, i) => (
                 <li key={i}>
@@ -129,7 +124,7 @@ export default function Footer() {
 
           {/* Support / Contact */}
           <div>
-            <h3 className="text-slate-900 dark:text-white font-semibold text-sm mb-4">Support</h3>
+            <h3 className="text-slate-900 dark:text-white font-semibold text-sm mb-4">{t.footer.support}</h3>
             <ul className="space-y-2.5">
               <li>
                 <a
@@ -194,11 +189,11 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="border-t border-slate-200 dark:border-navy-800 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-slate-500 dark:text-gray-500 text-xs text-center sm:text-left font-medium">
-            © 2026 PT. Jembatan Data Pangrango. All Rights Reserved.
+            {t.footer.rights}
           </p>
           <div className="flex gap-4">
-            <span className="text-slate-500 dark:text-gray-500 text-xs hover:text-cyan-600 dark:hover:text-gray-400 cursor-pointer transition-colors">Kebijakan Privasi</span>
-            <span className="text-slate-500 dark:text-gray-500 text-xs hover:text-cyan-600 dark:hover:text-gray-400 cursor-pointer transition-colors">Syarat & Ketentuan</span>
+            <span className="text-slate-500 dark:text-gray-500 text-xs hover:text-cyan-600 dark:hover:text-gray-400 cursor-pointer transition-colors">{t.footer.privacyPolicy}</span>
+            <span className="text-slate-500 dark:text-gray-500 text-xs hover:text-cyan-600 dark:hover:text-gray-400 cursor-pointer transition-colors">{t.footer.terms}</span>
           </div>
         </div>
       </div>

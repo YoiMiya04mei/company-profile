@@ -1,4 +1,5 @@
 import { ThemeProvider } from '@/context/ThemeContext';
+import { LanguageProvider } from '@/context/LanguageContext';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
 
@@ -21,8 +22,9 @@ import Footer from '@/components/Footer';
 function App() {
   return (
     <ThemeProvider>
-      <div className="min-h-screen bg-slate-50 dark:bg-navy-950 text-slate-900 dark:text-white transition-colors duration-300 selection:bg-cyan-500 selection:text-white">
-        <Navbar />
+      <LanguageProvider>
+        <div className="min-h-screen bg-slate-50 dark:bg-navy-950 text-slate-900 dark:text-white transition-colors duration-300 selection:bg-cyan-500 selection:text-white">
+          <Navbar />
         <main>
         <Hero />
         <About />
@@ -41,7 +43,8 @@ function App() {
       </main>
       <Footer />
       <WhatsAppButton />
-    </div>
+        </div>
+      </LanguageProvider>
     </ThemeProvider>
   );
 }

@@ -10,7 +10,7 @@ export const company = {
   tagline: 'Connecting Indonesia, Empowering Your Digital Future',
   type: 'Internet Service Provider (ISP)',
   description:
-    'PT. Jembatan Data Pangrango adalah perusahaan Internet Service Provider yang menyediakan layanan konektivitas internet, jaringan bisnis, dedicated internet, IP Transit, colocation, dan solusi jaringan untuk pelanggan enterprise, corporate, ISP/reseller, maupun institusi.',
+    'PT. Jembatan Data Pangrango didirikan tahun 2019, perusahaan ini bergerak di bidang Internet Service Provider (ISP). Di era kemajuan globalisasi dan jaringan informasi, Jembatan Data Pangrango mampu beradaptasi dan terus berinovasi sehingga dapat menjawab segala tantangan yang ada.',
   website: 'jembatandata.com',
 
   // Contact

@@ -1,14 +1,27 @@
 import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
-import { navLinks, company } from '@/data/company';
+import { company } from '@/data/company';
 import PortalLogin from '@/components/PortalLogin';
 import ThemeToggle from '@/components/ThemeToggle';
+import LanguageToggle from '@/components/LanguageToggle';
 import { useTheme } from '@/context/ThemeContext';
+import { useLanguage } from '@/context/LanguageContext';
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const { resolvedTheme } = useTheme();
+  const { t } = useLanguage();
+
+  const dynamicNavLinks = [
+    { label: t.nav.home, href: '#home' },
+    { label: t.nav.network, href: '#network' },
+    { label: t.nav.services, href: '#services' },
+    { label: t.nav.pricing, href: '#pricing' },
+    { label: t.nav.coverage, href: '#coverage' },
+    { label: t.nav.partnership, href: '#partnership' },
+    { label: t.nav.contact, href: '#footer' },
+  ];
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -48,11 +61,11 @@ export default function Navbar() {
 
         {/* Desktop nav */}
         <div className="hidden lg:flex items-center gap-1">
-          {navLinks.map((link) => (
+          {dynamicNavLinks.map((link) => (
             <button
               key={link.href}
               onClick={() => handleNavClick(link.href)}
-              className="px-3.5 py-2 text-sm font-medium text-slate-700 hover:text-cyan-600 dark:text-gray-300 dark:hover:text-cyan-400 transition-colors relative group"
+              className="px-3 py-2 text-sm font-medium text-slate-700 hover:text-cyan-600 dark:text-gray-300 dark:hover:text-cyan-400 transition-colors relative group"
             >
               {link.label}
               <span className="absolute bottom-1 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-cyan-500 transition-all duration-300 group-hover:w-3/4" />
@@ -60,14 +73,16 @@ export default function Navbar() {
           ))}
         </div>
 
-        {/* Desktop actions: Theme Toggle + Portal Login */}
-        <div className="hidden lg:flex items-center gap-3">
+        {/* Desktop actions: Language Toggle + Theme Toggle + Portal Login */}
+        <div className="hidden lg:flex items-center gap-2.5">
+          <LanguageToggle variant="dropdown" />
           <ThemeToggle variant="dropdown" />
           <PortalLogin />
         </div>
 
         {/* Mobile toggle */}
         <div className="lg:hidden flex items-center gap-2">
+          <LanguageToggle variant="dropdown" />
           <ThemeToggle variant="dropdown" />
           <button
             className="text-slate-800 dark:text-white p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-navy-800 transition-colors"
@@ -82,16 +97,17 @@ export default function Navbar() {
       {/* Mobile menu drawer */}
       <div
         className={`lg:hidden overflow-hidden transition-all duration-300 ${
-          mobileOpen ? 'max-h-[32rem] mt-3' : 'max-h-0'
+          mobileOpen ? 'max-h-[36rem] mt-3' : 'max-h-0'
         }`}
       >
         <div className="bg-white/95 dark:bg-navy-900/95 backdrop-blur-md mx-4 rounded-xl p-4 flex flex-col gap-1 border border-slate-200 dark:border-navy-700/50 shadow-xl">
-          {/* Mobile Theme Selector */}
-          <div className="pb-3 mb-2 border-b border-slate-200 dark:border-navy-700/50">
+          {/* Mobile Settings: Language & Theme Selectors */}
+          <div className="pb-3 mb-2 border-b border-slate-200 dark:border-navy-700/50 space-y-3">
+            <LanguageToggle variant="segmented" />
             <ThemeToggle variant="segmented" />
           </div>
 
-          {navLinks.map((link) => (
+          {dynamicNavLinks.map((link) => (
             <button
               key={link.href}
               onClick={() => handleNavClick(link.href)}
@@ -138,7 +154,7 @@ export default function Navbar() {
             onClick={() => handleNavClick('#footer')}
             className="flex items-center justify-center gap-2 bg-gradient-to-r from-cyan-500 to-blue-600 text-white px-5 py-2.5 rounded-lg font-semibold text-sm mt-3 hover:opacity-95 transition-opacity shadow-md shadow-cyan-500/20"
           >
-            Hubungi Kami
+            {t.nav.contactUs}
           </button>
         </div>
       </div>

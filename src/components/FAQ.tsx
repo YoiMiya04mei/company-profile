@@ -2,9 +2,11 @@ import { useState } from 'react';
 import { ChevronDown } from 'lucide-react';
 import { faqs } from '@/data/company';
 import { useReveal } from '@/hooks/useReveal';
+import { useLanguage } from '@/context/LanguageContext';
 
 export default function FAQ() {
   const { ref, visible } = useReveal<HTMLDivElement>();
+  const { t } = useLanguage();
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
@@ -13,13 +15,13 @@ export default function FAQ() {
         {/* Header */}
         <div className="text-center mb-12">
           <div className="inline-flex items-center gap-2 bg-cyan-500/10 border border-cyan-500/30 rounded-full px-4 py-1.5 mb-5">
-            <span className="text-cyan-300 text-sm font-medium">FAQ</span>
+            <span className="text-cyan-300 text-sm font-medium">{t.faq.badge}</span>
           </div>
           <h2 className="text-3xl lg:text-4xl font-extrabold text-white mb-4">
-            Frequently Asked <span className="gradient-text">Questions</span>
+            {t.faq.title}
           </h2>
           <p className="text-gray-400">
-            Jawaban untuk pertanyaan yang sering ditanyakan.
+            {t.faq.subtitle}
           </p>
         </div>
 

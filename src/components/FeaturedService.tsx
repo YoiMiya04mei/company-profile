@@ -3,6 +3,7 @@ import {
 } from 'lucide-react';
 import { featuredService } from '@/data/company';
 import { useReveal } from '@/hooks/useReveal';
+import { useLanguage } from '@/context/LanguageContext';
 
 const iconMap: Record<string, typeof ArrowRightLeft> = {
   ArrowRightLeft, Gauge, Globe2, Timer, ShieldCheck, Activity, Headphones, TrendingUp,
@@ -10,6 +11,7 @@ const iconMap: Record<string, typeof ArrowRightLeft> = {
 
 export default function FeaturedService() {
   const { ref, visible } = useReveal<HTMLDivElement>();
+  const { t } = useLanguage();
 
   return (
     <section className="relative bg-navy-950 py-24 overflow-hidden">
@@ -25,24 +27,27 @@ export default function FeaturedService() {
             <div>
               <div className="inline-flex items-center gap-2 bg-cyan-500/15 border border-cyan-500/30 rounded-full px-4 py-1.5 mb-5">
                 <span className="w-2 h-2 bg-cyan-400 rounded-full animate-pulse" />
-                <span className="text-cyan-300 text-sm font-medium">LAYANAN UNGGULAN</span>
+                <span className="text-cyan-300 text-sm font-medium">
+                  {t.featuredService.cta === 'Minta Penawaran' ? 'LAYANAN UNGGULAN' : 'FEATURED SERVICE'}
+                </span>
               </div>
 
               <h2 className="text-3xl lg:text-4xl font-extrabold text-white mb-4 leading-tight">
-                {featuredService.title}
+                {t.featuredService.title}
               </h2>
-              <p className="text-gray-400 text-lg mb-8">{featuredService.subtitle}</p>
+              <p className="text-gray-400 text-lg mb-8">{t.featuredService.subtitle}</p>
 
               <div className="grid sm:grid-cols-2 gap-3 mb-8">
                 {featuredService.features.map((feature, i) => {
                   const Icon = iconMap[feature.icon] || Activity;
+                  const label = t.featuredService.features[i] || feature.label;
                   return (
                     <div
                       key={i}
                       className="flex items-center gap-3 p-3 bg-white/5 border border-white/10 rounded-xl hover:border-cyan-500/30 transition-colors"
                     >
                       <Icon className="w-5 h-5 text-cyan-400 flex-shrink-0" />
-                      <span className="text-gray-300 text-sm font-medium">{feature.label}</span>
+                      <span className="text-gray-300 text-sm font-medium">{label}</span>
                     </div>
                   );
                 })}
@@ -52,7 +57,7 @@ export default function FeaturedService() {
                 onClick={() => document.querySelector('#footer')?.scrollIntoView({ behavior: 'smooth' })}
                 className="flex items-center gap-2 bg-gradient-to-r from-cyan-500 to-blue-600 text-white px-7 py-3.5 rounded-xl font-semibold hover:shadow-lg hover:shadow-cyan-500/30 transition-all btn-shine"
               >
-                {featuredService.cta}
+                {t.featuredService.cta}
                 <ArrowRight className="w-5 h-5" />
               </button>
             </div>

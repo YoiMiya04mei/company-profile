@@ -1,6 +1,7 @@
 import { Wifi, TrendingUp, MonitorCheck, Activity, Headphones, Expand } from 'lucide-react';
 import { whyChooseUs } from '@/data/company';
 import { useReveal } from '@/hooks/useReveal';
+import { useLanguage } from '@/context/LanguageContext';
 
 const iconMap: Record<string, typeof Wifi> = {
   Wifi, TrendingUp, MonitorCheck, Activity, Headphones, Expand,
@@ -8,6 +9,7 @@ const iconMap: Record<string, typeof Wifi> = {
 
 export default function WhyChooseUs() {
   const { ref, visible } = useReveal<HTMLDivElement>();
+  const { t } = useLanguage();
 
   return (
     <section className="relative bg-navy-900 py-24 overflow-hidden">
@@ -17,13 +19,15 @@ export default function WhyChooseUs() {
         {/* Header */}
         <div className="text-center mb-16">
           <div className="inline-flex items-center gap-2 bg-cyan-500/10 border border-cyan-500/30 rounded-full px-4 py-1.5 mb-5">
-            <span className="text-cyan-300 text-sm font-medium">KEUNGGULAN</span>
+            <span className="text-cyan-300 text-sm font-medium">
+              {t.nav.contact === 'KONTAK' ? 'KEUNGGULAN' : 'ADVANTAGES'}
+            </span>
           </div>
           <h2 className="text-3xl lg:text-4xl font-extrabold text-white mb-4">
-            Why Choose <span className="gradient-text">Jembatan Data?</span>
+            {t.whyChooseUs.title}
           </h2>
           <p className="text-gray-400 max-w-2xl mx-auto">
-            Alasan mengapa bisnis mempercayakan konektivitas mereka kepada kami.
+            {t.whyChooseUs.subtitle}
           </p>
         </div>
 
@@ -31,6 +35,7 @@ export default function WhyChooseUs() {
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {whyChooseUs.map((item, i) => {
             const Icon = iconMap[item.icon] || Wifi;
+            const translatedItem = t.whyChooseUs.items[i] || item;
             return (
               <div
                 key={i}
@@ -43,8 +48,8 @@ export default function WhyChooseUs() {
                   <div className="w-14 h-14 bg-gradient-to-br from-cyan-500/15 to-blue-600/15 rounded-2xl flex items-center justify-center mb-5 group-hover:scale-110 group-hover:rotate-3 transition-all">
                     <Icon className="w-7 h-7 text-cyan-400" />
                   </div>
-                  <h3 className="text-white font-bold text-lg mb-2">{item.title}</h3>
-                  <p className="text-gray-400 text-sm leading-relaxed">{item.description}</p>
+                  <h3 className="text-white font-bold text-lg mb-2">{translatedItem.title}</h3>
+                  <p className="text-gray-400 text-sm leading-relaxed">{translatedItem.description}</p>
                 </div>
 
                 {/* Corner accent */}

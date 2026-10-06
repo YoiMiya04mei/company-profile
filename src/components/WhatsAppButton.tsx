@@ -7,7 +7,7 @@ export default function WhatsAppButton() {
 
   const waNumber = company.contact.whatsapp;
   const waMessage = encodeURIComponent(
-    'Halo Jembatan Data, saya ingin mendapatkan informasi mengenai layanan internet.'
+    'Halo PT. Jembatan Data Pangrango , saya ingin mendapatkan informasi mengenai layanan internet.'
   );
   const waUrl = `https://wa.me/${waNumber}?text=${waMessage}`;
 

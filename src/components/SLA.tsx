@@ -1,11 +1,13 @@
 import { ShieldCheck, Activity, Headphones, FileText } from 'lucide-react';
 import { slaData } from '@/data/company';
 import { useReveal } from '@/hooks/useReveal';
+import { useLanguage } from '@/context/LanguageContext';
 
 const icons = [ShieldCheck, Activity, Headphones, FileText];
 
 export default function SLA() {
   const { ref, visible } = useReveal<HTMLDivElement>();
+  const { t } = useLanguage();
 
   return (
     <section className="relative bg-navy-900 py-24 overflow-hidden">
@@ -14,13 +16,13 @@ export default function SLA() {
       <div ref={ref} className={`relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ${visible ? 'visible' : ''} reveal`}>
         <div className="text-center mb-16">
           <div className="inline-flex items-center gap-2 bg-cyan-500/10 border border-cyan-500/30 rounded-full px-4 py-1.5 mb-5">
-            <span className="text-cyan-300 text-sm font-medium">RELIABILITY</span>
+            <span className="text-cyan-300 text-sm font-medium">SLA & RELIABILITY</span>
           </div>
           <h2 className="text-3xl lg:text-4xl font-extrabold text-white mb-4">
-            Built for <span className="gradient-text">Reliability</span>
+            {t.sla.title}
           </h2>
           <p className="text-gray-400 max-w-2xl mx-auto">
-            Infrastruktur dan layanan kami dirancang untuk memberikan ketersediaan tinggi.
+            {t.sla.subtitle}
           </p>
         </div>
 

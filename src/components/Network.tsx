@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useReveal } from '@/hooks/useReveal';
 import { Radio, Sparkles } from 'lucide-react';
+import { useLanguage } from '@/context/LanguageContext';
 
 // ── Canvas dimensions (viewBox basis) ────────────────────────────────────────
 const CW = 1100;
@@ -39,37 +40,46 @@ const nodes: ENode[] = [
   // ── Row 3 — Content / OTT / E-Commerce ──
   { id: 'alibaba',  name: 'Alibaba.com',  logo: '/exchange/alibaba-com-logo-png_seeklogo-6545.png', x: 150,  y: 310 },
   { id: 'amazon',   name: 'Amazon',       logo: '/exchange/amazon-logo-png-svg.webp',               x: 370,  y: 295 },
-  { id: 'sea',      name: 'Sea Group',    logo: '/exchange/Sea_Group_logo.svg.webp',                x: 550,  y: 292 },
+  { id: 'sea',      name: 'Sea Group',    logo: '/exchange/Sea_Group_logo.svg.webp',                x: 550,  y: 252 },
   { id: 'gcore',    name: 'Gcore',        logo: '/exchange/gcore-logo-png-svg.webp',                x: 730,  y: 295 },
 
   // ── Row 4 — Regional JDPIX Nodes ──
-  { id: 'jdpix-sukabumi', name: 'JDPIX SUKABUMI', logo: '/logo-jdp.png', x: 320, y: 545 },
-  { id: 'jdpix-bandung',  name: 'JDPIX BANDUNG',  logo: '/logo-jdp.png', x: 550, y: 545 },
-  { id: 'jdpix-lombok',   name: 'JDPIX LOMBOK',   logo: '/logo-jdp.png', x: 780, y: 545 },
+  { id: 'jdpix-sukabumi', name: 'JDPIX SUKABUMI', logo: '/logo-jdp.png', x: 220, y: 535 },
+  { id: 'jdpix-bandung',  name: 'JDPIX BANDUNG',  logo: '/logo-jdp.png', x: 520, y: 535 },
+  { id: 'jdpix-lombok',   name: 'JDPIX LOMBOK',   logo: '/logo-jdp.png', x: 820, y: 535 },
 ];
 
-// ── Generate cubic-bezier path from node → hub ───────────────────────────────
-function makePath(nx: number, ny: number): string {
+// ── Node edge connection calculation ─────────────────────────────────────────
+function getNodeEdgePoints(nx: number, ny: number): { sx: number; sy: number; ex: number; ey: number } {
   const dx = HUB_X - nx;
   const dy = HUB_Y - ny;
-  // cp1: leave node going toward hub (slight lateral sweep)
-  const cp1x = nx + dx * 0.3;
-  const cp1y = ny + dy * 0.15;
-  // cp2: approach hub from above (smooth curve)
-  const cp2x = nx + dx * 0.7;
-  const cp2y = ny + dy * 0.65;
-  return `M ${nx} ${ny} C ${cp1x} ${cp1y}, ${cp2x} ${cp2y}, ${HUB_X} ${HUB_Y}`;
+  const angle = Math.atan2(dy, dx);
+
+  const rNode = 26; // Node circle radius (2px inside 28px border for seamless merge)
+  const rHub  = 64; // Hub circle radius
+
+  // Start point on node perimeter pointing directly toward central hub
+  const sx = nx + Math.cos(angle) * rNode;
+  const sy = ny + Math.sin(angle) * rNode;
+
+  // End point on central hub perimeter pointing directly toward node
+  const ex = HUB_X - Math.cos(angle) * rHub;
+  const ey = HUB_Y - Math.sin(angle) * rHub;
+
+  return { sx, sy, ex, ey };
 }
 
-// ── Hub port attachment coordinates ──────────────────────────────────────────
-function hubPort(nx: number, ny: number, r: number) {
-  const angle = Math.atan2(ny - HUB_Y, nx - HUB_X);
-  return { px: HUB_X + Math.cos(angle) * r, py: HUB_Y + Math.sin(angle) * r };
+function makePath(nx: number, ny: number): { d: string; sx: number; sy: number; ex: number; ey: number } {
+  const { sx, sy, ex, ey } = getNodeEdgePoints(nx, ny);
+  // Straight direct ray from node edge to hub edge
+  const d = `M ${sx} ${sy} L ${ex} ${ey}`;
+  return { d, sx, sy, ex, ey };
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
 export default function NetworkInfrastructure() {
   const { ref, visible } = useReveal<HTMLDivElement>();
+  const { t } = useLanguage();
   const [hoveredId, setHoveredId] = useState<string | null>(null);
 
   return (
@@ -89,15 +99,14 @@ export default function NetworkInfrastructure() {
           <div className="inline-flex items-center gap-2 bg-cyan-500/10 border border-cyan-500/30 rounded-full px-4 py-1.5 mb-5">
             <Radio className="w-4 h-4 text-cyan-400 animate-pulse" />
             <span className="text-cyan-300 text-xs sm:text-sm font-semibold uppercase tracking-widest">
-              Network Exchange Topology
+              {t.network.badge}
             </span>
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight mb-4 leading-tight">
-            Our <span className="gradient-text">Exchange Interconnection</span>
+            {t.network.title}
           </h2>
           <p className="text-gray-400 text-base leading-relaxed">
-            Infrastruktur JDPIX terhubung langsung ke seluruh Internet Exchange Point utama,
-            CDN global, dan Cloud Provider tier-1 Indonesia & internasional.
+            {t.network.subtitle}
           </p>
         </div>
 
@@ -123,19 +132,22 @@ export default function NetworkInfrastructure() {
                 preserveAspectRatio="xMidYMid meet"
               >
                 <defs>
-                  {/* Per-line gradient: node colour → hub cyan */}
-                  {nodes.map(node => (
-                    <linearGradient
-                      key={`g-${node.id}`}
-                      id={`lg-${node.id}`}
-                      gradientUnits="userSpaceOnUse"
-                      x1={node.x} y1={node.y}
-                      x2={HUB_X}  y2={HUB_Y}
-                    >
-                      <stop offset="0%"   stopColor="#38bdf8" stopOpacity="0.5" />
-                      <stop offset="100%" stopColor="#06b6d4" stopOpacity="0.9" />
-                    </linearGradient>
-                  ))}
+                  {/* Per-line gradient: node edge → hub edge */}
+                  {nodes.map(node => {
+                    const { sx, sy, ex, ey } = getNodeEdgePoints(node.x, node.y);
+                    return (
+                      <linearGradient
+                        key={`g-${node.id}`}
+                        id={`lg-${node.id}`}
+                        gradientUnits="userSpaceOnUse"
+                        x1={sx} y1={sy}
+                        x2={ex} y2={ey}
+                      >
+                        <stop offset="0%"   stopColor="#38bdf8" stopOpacity="0.5" />
+                        <stop offset="100%" stopColor="#06b6d4" stopOpacity="0.9" />
+                      </linearGradient>
+                    );
+                  })}
 
                   {/* Soft glow for animated pulses */}
                   <filter id="pulse-glow" x="-40%" y="-40%" width="180%" height="180%">
@@ -176,12 +188,11 @@ export default function NetworkInfrastructure() {
 
                 {/* ── Per-node: base line + animated data-pulse ── */}
                 {nodes.map((node, i) => {
-                  const d = makePath(node.x, node.y);
+                  const { d, sx, sy, ex, ey } = makePath(node.x, node.y);
                   const isHot = hoveredId === node.id;
                   // Stagger: each node gets a slightly different speed & delay
                   const dur   = (1.6 + (i % 6) * 0.25).toFixed(2);
                   const delay = (i * 0.22).toFixed(2);
-                  const { px, py } = hubPort(node.x, node.y, 58);
 
                   return (
                     <g key={node.id}>
@@ -207,7 +218,7 @@ export default function NetworkInfrastructure() {
                         />
                       )}
 
-                      {/* Animated data-pulse dot travelling node→hub */}
+                      {/* Animated data-pulse dot travelling node edge → hub edge */}
                       <path
                         d={d}
                         fill="none"
@@ -248,8 +259,11 @@ export default function NetworkInfrastructure() {
                         />
                       </path>
 
-                      {/* Hub port dot */}
-                      <circle cx={px} cy={py} r="3" fill="#06b6d4" opacity="0.55">
+                      {/* Attachment dot at node edge */}
+                      <circle cx={sx} cy={sy} r="2.5" fill="#38bdf8" opacity="0.8" />
+
+                      {/* Hub port dot at hub edge */}
+                      <circle cx={ex} cy={ey} r="3" fill="#06b6d4" opacity="0.55">
                         <animate attributeName="opacity"
                           values="0.25;0.9;0.25"
                           dur={`${(1.8 + i * 0.15).toFixed(1)}s`}
@@ -269,15 +283,24 @@ export default function NetworkInfrastructure() {
                 return (
                   <div
                     key={node.id}
-                    style={{ position: 'absolute', left, top, transform: 'translate(-50%,-50%)', animationDelay: `${i * 0.07}s` }}
-                    className="z-20 flex flex-col items-center animate-fade-in-up cursor-pointer group"
+                    style={{
+                      position: 'absolute',
+                      left,
+                      top,
+                      transform: 'translate(-50%,-50%)',
+                      animationDelay: `${i * 0.07}s`,
+                    }}
+                    className="z-20 w-14 h-14 flex items-center justify-center animate-fade-in-up cursor-pointer group"
                     onMouseEnter={() => setHoveredId(node.id)}
                     onMouseLeave={() => setHoveredId(null)}
                   >
                     {/* Glow aura */}
                     <div
-                      className="absolute -inset-2 rounded-full blur-md transition-opacity duration-300"
-                      style={{ background: 'radial-gradient(circle, rgba(34,211,238,0.5) 0%, transparent 70%)', opacity: isHot ? 0.7 : 0 }}
+                      className="absolute -inset-2 rounded-full blur-md transition-opacity duration-300 pointer-events-none"
+                      style={{
+                        background: 'radial-gradient(circle, rgba(34,211,238,0.5) 0%, transparent 70%)',
+                        opacity: isHot ? 0.7 : 0,
+                      }}
                     />
 
                     {/* Circular logo badge */}
@@ -291,7 +314,7 @@ export default function NetworkInfrastructure() {
                       <img
                         src={node.logo}
                         alt={node.name}
-                        className="max-h-full max-w-full object-contain"
+                        className="max-h-full max-w-full object-contain pointer-events-none select-none"
                         loading="lazy"
                       />
                       {/* Live status dot */}
@@ -303,14 +326,14 @@ export default function NetworkInfrastructure() {
 
                     {/* Name label */}
                     <div
-                      className={`mt-1.5 px-2 py-0.5 rounded-md text-[10px] font-semibold whitespace-nowrap bg-navy-900/90 border transition-colors duration-200 ${
-                        isHot ? 'text-cyan-300 border-cyan-500/50' : 'text-slate-300 border-slate-700/60 group-hover:text-cyan-300 group-hover:border-cyan-500/30'
+                      className={`absolute top-full mt-1.5 left-1/2 -translate-x-1/2 px-2 py-0.5 rounded-md text-[10px] font-semibold whitespace-nowrap bg-navy-900/90 border transition-colors duration-200 pointer-events-none ${
+                        isHot
+                          ? 'text-cyan-300 border-cyan-500/50'
+                          : 'text-slate-300 border-slate-700/60 group-hover:text-cyan-300 group-hover:border-cyan-500/30'
                       }`}
                     >
                       {node.name}
                     </div>
-
-
                   </div>
                 );
               })}

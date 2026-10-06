@@ -5,10 +5,12 @@ import { Layers, ChevronRight, RefreshCw, ShieldCheck, MapPin, ZoomIn } from 'lu
 import { coverageRegions, indonesiaOverviewBounds, CoverageRegion } from '@/data/coverageData';
 import { useReveal } from '@/hooks/useReveal';
 import { useTheme } from '@/context/ThemeContext';
+import { useLanguage } from '@/context/LanguageContext';
 
 export default function Coverage() {
   const { ref, visible } = useReveal<HTMLDivElement>();
   const { resolvedTheme } = useTheme();
+  const { t } = useLanguage();
   const [selectedRegion, setSelectedRegion] = useState<CoverageRegion | null>(null);
   const [hoveredRegionId, setHoveredRegionId] = useState<string | null>(null);
 
@@ -294,13 +296,13 @@ export default function Coverage() {
         <div className="text-center mb-12">
           <div className="inline-flex items-center gap-2 bg-cyan-500/10 border border-cyan-500/30 rounded-full px-4 py-1.5 mb-4 shadow-[0_0_15px_rgba(6,182,212,0.15)]">
             <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
-            <span className="text-cyan-300 text-xs sm:text-sm font-semibold tracking-wider uppercase">Wilayah Cakupan Jaringan</span>
+            <span className="text-cyan-300 text-xs sm:text-sm font-semibold tracking-wider uppercase">{t.coverage.badge}</span>
           </div>
           <h2 className="text-3xl lg:text-5xl font-extrabold text-white mb-4 tracking-tight">
-            Our <span className="gradient-text">Coverage</span>
+            {t.coverage.title}
           </h2>
           <p className="text-gray-400 max-w-2xl mx-auto text-sm sm:text-base mb-4">
-            Cek ketersediaan layanan internet fiber optic & dedicated bandwidth bergaransi di area operasional kami.
+            {t.coverage.subtitle}
           </p>
 
           {/* Color legend pills */}

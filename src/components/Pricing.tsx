@@ -1,9 +1,11 @@
 import { Check, Star, ArrowRight } from 'lucide-react';
 import { pricing } from '@/data/company';
 import { useReveal } from '@/hooks/useReveal';
+import { useLanguage } from '@/context/LanguageContext';
 
 export default function Pricing() {
   const { ref, visible } = useReveal<HTMLDivElement>();
+  const { t } = useLanguage();
 
   const scrollToContact = () => {
     document.querySelector('#footer')?.scrollIntoView({ behavior: 'smooth' });
@@ -15,13 +17,13 @@ export default function Pricing() {
         {/* Header */}
         <div className="text-center mb-16">
           <div className="inline-flex items-center gap-2 bg-cyan-500/10 border border-cyan-500/30 rounded-full px-4 py-1.5 mb-5">
-            <span className="text-cyan-300 text-sm font-medium">PRICING</span>
+            <span className="text-cyan-300 text-sm font-medium">{t.pricing.badge}</span>
           </div>
           <h2 className="text-3xl lg:text-4xl font-extrabold text-white mb-4">
-            Internet Solutions for <span className="gradient-text">Every Business</span>
+            {t.pricing.title}
           </h2>
           <p className="text-gray-400 max-w-2xl mx-auto">
-            Pilih paket internet yang sesuai dengan kebutuhan bisnis Anda.
+            {t.pricing.subtitle}
           </p>
         </div>
 
@@ -73,7 +75,7 @@ export default function Pricing() {
                     : 'bg-white/5 border border-white/15 text-white hover:bg-white/10 hover:border-cyan-500/40'
                 }`}
               >
-                {plan.name === 'CUSTOM' ? 'Contact Sales' : 'Request Quote'}
+                {plan.name === 'CUSTOM' ? (t.nav.contact === 'KONTAK' ? 'Hubungi Sales' : 'Contact Sales') : t.pricing.cta}
                 <ArrowRight className="w-4 h-4" />
               </button>
             </div>

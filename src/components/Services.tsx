@@ -5,6 +5,7 @@ import {
 } from 'lucide-react';
 import { services } from '@/data/company';
 import { useReveal } from '@/hooks/useReveal';
+import { useLanguage } from '@/context/LanguageContext';
 
 const iconMap: Record<string, typeof Globe> = {
   Globe, Building2, Network, Server, Router, MonitorCheck, Wifi, Share2,
@@ -14,6 +15,7 @@ type Service = typeof services[0];
 
 export default function Services() {
   const { ref, visible } = useReveal<HTMLDivElement>();
+  const { t } = useLanguage();
   const [selected, setSelected] = useState<Service | null>(null);
 
   return (
@@ -22,13 +24,13 @@ export default function Services() {
         {/* Header */}
         <div ref={ref} className={`text-center mb-16 ${visible ? 'visible' : ''} reveal`}>
           <div className="inline-flex items-center gap-2 bg-cyan-500/10 border border-cyan-500/30 rounded-full px-4 py-1.5 mb-5">
-            <span className="text-cyan-300 text-sm font-medium">LAYANAN KAMI</span>
+            <span className="text-cyan-300 text-sm font-medium">{t.services.badge}</span>
           </div>
           <h2 className="text-3xl lg:text-4xl font-extrabold text-white mb-4">
-            Our Internet & <span className="gradient-text">Network Solutions</span>
+            {t.services.title}
           </h2>
           <p className="text-gray-400 max-w-2xl mx-auto">
-            Solusi konektivitas lengkap untuk berbagai kebutuhan bisnis — dari dedicated internet hingga managed services.
+            {t.services.subtitle}
           </p>
         </div>
 
@@ -36,6 +38,10 @@ export default function Services() {
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {services.map((service, i) => {
             const Icon = iconMap[service.icon] || Globe;
+            const translatedItem = t.services.items[i];
+            const title = translatedItem?.title || service.title;
+            const description = translatedItem?.description || service.description;
+
             return (
               <div
                 key={i}
@@ -45,14 +51,14 @@ export default function Services() {
                   <div className="w-12 h-12 bg-gradient-to-br from-cyan-500/20 to-blue-600/20 rounded-xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
                     <Icon className="w-6 h-6 text-cyan-400" />
                   </div>
-                  <h3 className="text-white font-bold text-lg mb-2">{service.title}</h3>
-                  <p className="text-gray-400 text-sm leading-relaxed mb-4">{service.description}</p>
+                  <h3 className="text-white font-bold text-lg mb-2">{title}</h3>
+                  <p className="text-gray-400 text-sm leading-relaxed mb-4">{description}</p>
                 </div>
                 <button
-                  onClick={() => setSelected(service)}
+                  onClick={() => setSelected({ ...service, title, description })}
                   className="flex items-center gap-1.5 text-cyan-400 text-sm font-medium hover:gap-3 transition-all mt-auto pt-2"
                 >
-                  Learn More
+                  {t.featuredService.cta === 'Minta Penawaran' ? 'Pelajari Lebih Lanjut' : 'Learn More'}
                   <ArrowRight className="w-4 h-4" />
                 </button>
               </div>

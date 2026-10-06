@@ -17,31 +17,23 @@ export default function PortalLogin() {
   }, []);
 
   const portals = [
-    { ...company.portals.dcim, icon: Server },
-    { ...company.portals.billing, icon: CreditCard },
+    { label: company.portals.dcim.label, url: company.portals.dcim.url, icon: Server },
+    { label: company.portals.billing.label, url: company.portals.billing.url, icon: CreditCard },
   ];
 
   return (
     <div ref={ref} className="relative">
       <button
         onClick={() => setOpen(!open)}
-        className="flex items-center gap-2 bg-gradient-to-r from-cyan-500 to-blue-600 text-white px-5 py-2.5 rounded-lg font-semibold text-sm hover:shadow-lg hover:shadow-cyan-500/30 transition-all btn-shine"
+        className="flex items-center gap-2 bg-gradient-to-r from-cyan-500 to-blue-600 text-white px-4 py-2 rounded-lg font-semibold text-xs sm:text-sm hover:shadow-lg hover:shadow-cyan-500/30 transition-all btn-shine"
       >
         Portal Login
-        <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${open ? 'rotate-180' : ''}`} />
+        <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-300 ${open ? 'rotate-180' : ''}`} />
       </button>
 
-      {/* Dropdown */}
-      <div
-        className={`absolute right-0 top-full mt-2 w-72 bg-white dark:bg-navy-800 border border-slate-200 dark:border-cyan-500/20 rounded-xl shadow-2xl overflow-hidden transition-all duration-300 origin-top z-50 ${
-          open ? 'opacity-100 scale-100 pointer-events-auto' : 'opacity-0 scale-95 pointer-events-none'
-        }`}
-      >
-        <div className="p-3 border-b border-slate-100 dark:border-navy-700">
-          <p className="text-slate-400 dark:text-gray-400 text-xs font-medium uppercase tracking-wide">Customer Portal</p>
-          <p className="text-slate-500 dark:text-gray-500 text-xs mt-0.5">Login to access your services</p>
-        </div>
-        <div className="p-2">
+      {/* Minimalist Dropdown */}
+      {open && (
+        <div className="absolute right-0 top-full mt-2 w-48 bg-white dark:bg-navy-900 border border-slate-200 dark:border-navy-700/80 rounded-xl shadow-xl p-1.5 z-50 animate-fade-in">
           {portals.map((portal, i) => {
             const Icon = portal.icon;
             return (
@@ -51,26 +43,18 @@ export default function PortalLogin() {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setOpen(false)}
-                className="flex items-center gap-3 p-3 rounded-lg hover:bg-slate-100 dark:hover:bg-navy-700/50 transition-colors group"
+                className="flex items-center justify-between px-3 py-2.5 rounded-lg text-slate-700 dark:text-gray-200 hover:text-cyan-600 dark:hover:text-cyan-400 hover:bg-slate-100 dark:hover:bg-navy-800 transition-colors text-xs font-semibold group"
               >
-                <div className="w-10 h-10 bg-cyan-500/15 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:bg-cyan-500/25 transition-colors">
-                  <Icon className="w-5 h-5 text-cyan-600 dark:text-cyan-400" />
+                <div className="flex items-center gap-2.5">
+                  <Icon className="w-4 h-4 text-cyan-500 flex-shrink-0" />
+                  <span>{portal.label}</span>
                 </div>
-                <div className="flex-1 min-w-0">
-                  <div className="text-slate-900 dark:text-white font-semibold text-sm">{portal.label}</div>
-                  <div className="text-slate-500 dark:text-gray-500 text-xs truncate">{portal.description}</div>
-                </div>
-                <ExternalLink className="w-4 h-4 text-slate-400 dark:text-gray-600 group-hover:text-cyan-500 transition-colors flex-shrink-0" />
+                <ExternalLink className="w-3.5 h-3.5 text-slate-400 dark:text-gray-500 group-hover:text-cyan-500 transition-colors opacity-70 group-hover:opacity-100" />
               </a>
             );
           })}
         </div>
-        <div className="p-3 border-t border-slate-100 dark:border-navy-700 bg-slate-50 dark:bg-navy-900/50">
-          <p className="text-slate-500 dark:text-gray-500 text-xs text-center">
-            Need access? Contact our team.
-          </p>
-        </div>
-      </div>
+      )}
     </div>
   );
 }

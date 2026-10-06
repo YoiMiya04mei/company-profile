@@ -1,6 +1,7 @@
 import { Building2, Briefcase, Share2, Landmark, GraduationCap, Server, Store } from 'lucide-react';
 import { customerSegments } from '@/data/company';
 import { useReveal } from '@/hooks/useReveal';
+import { useLanguage } from '@/context/LanguageContext';
 
 const iconMap: Record<string, typeof Building2> = {
   Building2, Briefcase, Share2, Landmark, GraduationCap, Server, Store,
@@ -8,6 +9,7 @@ const iconMap: Record<string, typeof Building2> = {
 
 export default function CustomerSegments() {
   const { ref, visible } = useReveal<HTMLDivElement>();
+  const { t } = useLanguage();
 
   return (
     <section className="relative bg-navy-950 py-24">
@@ -15,13 +17,13 @@ export default function CustomerSegments() {
         {/* Header */}
         <div className="text-center mb-16">
           <div className="inline-flex items-center gap-2 bg-cyan-500/10 border border-cyan-500/30 rounded-full px-4 py-1.5 mb-5">
-            <span className="text-cyan-300 text-sm font-medium">CUSTOMER SEGMENTS</span>
+            <span className="text-cyan-300 text-sm font-medium">{t.customerSegments.badge}</span>
           </div>
           <h2 className="text-3xl lg:text-4xl font-extrabold text-white mb-4">
-            Solutions Designed for <span className="gradient-text">Your Business</span>
+            {t.customerSegments.title}
           </h2>
           <p className="text-gray-400 max-w-2xl mx-auto">
-            Kami melayani berbagai segmen pelanggan dengan solusi yang disesuaikan.
+            {t.customerSegments.subtitle}
           </p>
         </div>
 

@@ -1,10 +1,12 @@
 import { Quote } from 'lucide-react';
 import { testimonials } from '@/data/company';
 import { useReveal } from '@/hooks/useReveal';
+import { useLanguage } from '@/context/LanguageContext';
 
 // NOTE: Replace these testimonials with real customer testimonials.
 export default function Testimonials() {
   const { ref, visible } = useReveal<HTMLDivElement>();
+  const { t } = useLanguage();
 
   return (
     <section className="relative bg-navy-950 py-24">
@@ -15,8 +17,11 @@ export default function Testimonials() {
             <span className="text-cyan-300 text-sm font-medium">TESTIMONIAL</span>
           </div>
           <h2 className="text-3xl lg:text-4xl font-extrabold text-white mb-4">
-            What Our <span className="gradient-text">Customers Say</span>
+            {t.testimonials.title}
           </h2>
+          <p className="text-gray-400 max-w-2xl mx-auto text-sm">
+            {t.testimonials.subtitle}
+          </p>
         </div>
 
         {/* Testimonial cards */}
